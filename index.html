@@ -223,7 +223,7 @@ a:hover { text-decoration: underline; }
 .leaflet-popup-tip { background: #fff !important; }
 .leaflet-control-zoom a { width: 34px !important; height: 34px !important; line-height: 34px !important; font-size: 16px !important; border-radius: 10px !important; background: rgba(255,255,255,.85) !important; -webkit-backdrop-filter: blur(10px) !important; backdrop-filter: blur(10px) !important; border: .5px solid var(--separator) !important; color: var(--text-primary) !important; }
 .leaflet-control-zoom { border-radius: 12px !important; overflow: hidden; box-shadow: var(--shadow-md) !important; border: none !important; }
-.leaflet-control-attribution { font-size: 9px !important; opacity: .5; }
+.leaflet-control-attribution { font-size: 11px !important; opacity: 1; }
 
 
 :root{--accent:#176764;--accent-hover:#205f5c;--bg-secondary:#f5f4ef;--text-secondary:#666d6a;--text-tertiary:#777e78;--radius-md:16px;--radius-lg:20px}
@@ -283,8 +283,8 @@ let map=null, markers=[], lines=[];
 if(window.L){
  map=L.map('map',{center:[35.46,139.1],zoom:9,zoomControl:false});
  L.control.zoom({position:'topright'}).addTo(map);
- L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
-   maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+   maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
  }).addTo(map);
 }else{
  document.getElementById('map').innerHTML='<div class="map-fallback"><div class="mountain">△</div><h2>成田 → 富士山 → 热海 → 东京</h2><p>在线地图暂未加载。右侧 / 下方的每日行程仍可阅读；联网后可使用导航。</p></div>';

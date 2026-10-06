@@ -4,4 +4,4 @@
 
 [打开地图](https://pzl233.github.io/fuji-trip-2026/) · [微信长图](https://pzl233.github.io/fuji-trip-2026/wechat-itinerary.png)
 
-Google Maps展示停靠顺序，车程为规划估算，费用以订单及刷卡结算为准。
+地图展示停靠顺序，导航链接打开Google Maps；车程为规划估算，费用以订单及刷卡结算为准。

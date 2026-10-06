@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>富士山观景行程 · 2026/11/26–12/1</title>
+<meta name="description" content="成田、Speedway、TOKI、十国峠、热海与东京的六日自驾参考行程。">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+/* ═══════════════════════════════════════════
+   Design System — edit :root to change theme
+   ═══════════════════════════════════════════ */
+:root {
+  --bg-primary:    #ffffff;
+  --bg-secondary:  #f5f5f7;
+  --bg-tertiary:   #fbfbfd;
+  --bg-grouped:    #f2f2f7;
+  --bg-elevated:   #ffffff;
+  --text-primary:   #1d1d1f;
+  --text-secondary: #86868b;
+  --text-tertiary:  #aeaeb2;
+  --accent:        #0071e3;
+  --accent-hover:  #0077ed;
+  --tint-red:    #ff3b30;
+  --tint-orange: #ff9500;
+  --tint-green:  #34c759;
+  --tint-blue:   #007aff;
+  --tint-purple: #af52de;
+  --tint-pink:   #ff2d55;
+  --separator:  rgba(60, 60, 67, .12);
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:  0 4px 14px rgba(0,0,0,.08);
+  --shadow-lg:  0 8px 30px rgba(0,0,0,.12);
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  20px;
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+               "Helvetica Neue", "Arial", sans-serif;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.47059;
+  letter-spacing: -0.022em;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Map ── */
+#map { width: 100%; height: 40vh; min-height: 280px; position: sticky; top: 0; z-index: 100; }
+.locate-btn {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+  border: none; box-shadow: 0 1px 4px rgba(0,0,0,.18);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.locate-btn.active { color: #007aff; }
+@keyframes loc-pulse {
+  0%   { transform: scale(1); opacity: .55; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+.loc-pulse {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: rgba(0,122,255,.25);
+  animation: loc-pulse 1.6s ease-out infinite;
+}
+
+/* ── Tabs ── */
+.tabs {
+  display: flex; gap: 6px; padding: 12px 16px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  background: rgba(255,255,255,.85); -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px); position: sticky; top: 40vh; z-index: 99;
+  border-bottom: .5px solid var(--separator); scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex-shrink: 0; padding: 7px 16px; border-radius: 980px; border: none;
+  background: var(--bg-grouped); color: var(--text-secondary);
+  font-size: 14px; font-weight: 500; cursor: pointer; transition: all .25s ease;
+  white-space: nowrap; letter-spacing: -0.01em;
+}
+.tab:active { transform: scale(.96); }
+.tab.active { background: var(--accent); color: #fff; }
+
+/* ── Main content ── */
+.content { max-width: 680px; margin: 0 auto; padding: 16px 16px calc(24px + var(--safe-bottom)); }
+
+/* ── Overview ── */
+.hero { text-align: center; padding: 28px 20px 20px; }
+.hero h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; }
+.hero .subtitle { font-size: 17px; color: var(--text-secondary); margin-top: 6px; font-weight: 400; }
+
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.info-card { background: var(--bg-elevated); border-radius: var(--radius-lg); padding: 16px; box-shadow: var(--shadow-sm); }
+.info-card .label { font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .02em; margin-bottom: 6px; }
+.info-card .value { font-size: 15px; font-weight: 600; line-height: 1.4; }
+
+/* ── Section headers ── */
+.section-head { font-size: 13px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .03em; padding: 20px 0 8px; }
+
+/* ── Day header ── */
+.day-head { padding: 20px 0 12px; }
+.day-head h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+.day-head p { font-size: 15px; color: var(--text-secondary); margin-top: 2px; }
+
+/* ── Route bar ── */
+.route-bar { background: var(--bg-elevated); border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 14px; box-shadow: var(--shadow-sm); font-size: 13px; color: var(--text-secondary); line-height: 1.7; white-space: pre-line; }
+.route-bar strong { color: var(--text-primary); }
+
+/* ── Timeline ── */
+.timeline { position: relative; padding-left: 24px; }
+.timeline::before { content: ''; position: absolute; left: 7px; top: 20px; bottom: 20px; width: 1.5px; background: var(--separator); }
+.tl-item { position: relative; margin-bottom: 10px; }
+.tl-dot { position: absolute; left: -20px; top: 18px; width: 10px; height: 10px; border-radius: 50%; z-index: 1; box-shadow: 0 0 0 3px var(--bg-secondary); }
+.tl-dot.food    { background: var(--tint-red); }
+.tl-dot.spot    { background: var(--tint-blue); }
+.tl-dot.hotel   { background: var(--tint-orange); }
+.tl-dot.drink   { background: var(--tint-purple); }
+.tl-dot.transport { background: var(--text-tertiary); }
+
+/* ── Card ── */
+.card { background: var(--bg-elevated); border-radius: var(--radius-md); padding: 14px 16px; box-shadow: var(--shadow-sm); transition: box-shadow .25s ease; cursor: pointer; }
+.card:active { box-shadow: var(--shadow-md); }
+.card .time { font-size: 12px; font-weight: 600; color: var(--text-tertiary); letter-spacing: .01em; }
+.card .name { font-size: 17px; font-weight: 600; margin: 2px 0 4px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 6px; }
+.card .desc { font-size: 14px; color: var(--text-secondary); line-height: 1.45; }
+
+/* Badge */
+.badge { display: inline-flex; align-items: center; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 4px; }
+.badge.food   { background: rgba(255,59,48,.1);  color: var(--tint-red); }
+.badge.spot   { background: rgba(0,122,255,.1);  color: var(--tint-blue); }
+.badge.drink  { background: rgba(175,82,222,.1); color: var(--tint-purple); }
+
+/* Budget */
+.budget { display: inline-block; margin-top: 6px; padding: 3px 10px; background: var(--bg-grouped); border-radius: var(--radius-sm); font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+
+/* Payment */
+.pays { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
+.pay { font-size: 11px; padding: 2px 7px; border-radius: 4px; font-weight: 600; }
+.pay.ok  { background: rgba(52,199,89,.1);  color: var(--tint-green); }
+.pay.no  { background: rgba(255,59,48,.08); color: var(--tint-red); }
+.pay.idk { background: rgba(255,149,0,.1);  color: var(--tint-orange); }
+
+/* Links row */
+.links { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 8px 14px; border-radius: var(--radius-sm);
+  font-size: 13px; font-weight: 600; border: none; cursor: pointer;
+  text-decoration: none !important; transition: filter .2s;
+}
+.btn:active { filter: brightness(.9); }
+.btn.nav    { background: var(--accent); color: #fff; }
+.btn.xhs    { background: #ff2442; color: #fff; }
+.btn.dp     { background: #ffa700; color: #fff; }
+.btn.rsv    { background: var(--tint-green); color: #fff; }
+
+/* Action Sheet */
+.as-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,.35); backdrop-filter: blur(2px);
+  display: flex; align-items: flex-end; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity .25s;
+}
+.as-overlay.show { opacity: 1; pointer-events: auto; }
+.as-sheet {
+  width: 100%; max-width: 420px;
+  padding: 0 8px 34px;
+  transform: translateY(100%); transition: transform .3s cubic-bezier(.22,1,.36,1);
+}
+.as-overlay.show .as-sheet { transform: translateY(0); }
+.as-group {
+  background: rgba(255,255,255,.88); backdrop-filter: blur(20px);
+  border-radius: 14px; overflow: hidden; margin-bottom: 8px;
+}
+.as-group .as-item {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 16px; font-size: 18px; color: #007aff; font-weight: 500;
+  border: none; background: none; width: 100%; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.as-group .as-item + .as-item { border-top: .5px solid rgba(0,0,0,.12); }
+.as-group .as-item:active { background: rgba(0,0,0,.06); }
+.as-cancel { font-weight: 600; }
+
+/* Details — default open */
+.details {
+  margin-top: 10px; padding-top: 10px;
+  border-top: .5px solid var(--separator);
+  font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+}
+.details.closed { display: none; }
+
+/* ── Overview day list ── */
+.day-list .card { margin-bottom: 8px; }
+.day-list .card .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+
+/* ── Payment summary ── */
+.pay-summary { background: var(--bg-elevated); border-radius: var(--radius-md); padding: 14px 16px; box-shadow: var(--shadow-sm); font-size: 13px; line-height: 1.7; margin-bottom: 10px; }
+.pay-summary h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.pay-summary .warn { color: var(--tint-red); }
+.pay-summary .ok-text { color: var(--tint-green); }
+
+/* ── Legend ── */
+.legend { display: flex; gap: 14px; flex-wrap: wrap; padding: 8px 0; font-size: 12px; color: var(--text-secondary); }
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* ── Leaflet overrides ── */
+.leaflet-popup-content-wrapper { border-radius: var(--radius-md) !important; box-shadow: var(--shadow-lg) !important; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif !important; }
+.leaflet-popup-content { font-size: 14px !important; line-height: 1.5 !important; margin: 12px 14px !important; }
+.leaflet-popup-content a { color: var(--accent) !important; }
+.leaflet-popup-tip { background: #fff !important; }
+.leaflet-control-zoom a { width: 34px !important; height: 34px !important; line-height: 34px !important; font-size: 16px !important; border-radius: 10px !important; background: rgba(255,255,255,.85) !important; -webkit-backdrop-filter: blur(10px) !important; backdrop-filter: blur(10px) !important; border: .5px solid var(--separator) !important; color: var(--text-primary) !important; }
+.leaflet-control-zoom { border-radius: 12px !important; overflow: hidden; box-shadow: var(--shadow-md) !important; border: none !important; }
+.leaflet-control-attribution { font-size: 9px !important; opacity: .5; }
+
+
+:root{--accent:#176764;--accent-hover:#205f5c;--bg-secondary:#f5f4ef;--text-secondary:#666d6a;--text-tertiary:#777e78;--radius-md:16px;--radius-lg:20px}
+body{letter-spacing:0}.layout{display:grid;grid-template-columns:47% 53%;align-items:start}.map-panel{position:sticky;top:0;height:100dvh;background:#e8efec}.map-panel #map{height:100%;min-height:300px;position:relative;z-index:1}.map-note{position:absolute;bottom:24px;left:14px;z-index:450;background:rgba(255,255,255,.93);border-radius:9px;padding:7px 11px;font-size:12px;color:#53635c;pointer-events:none}.plan-panel{min-width:0}.topbar{padding:17px 24px;display:flex;gap:10px;justify-content:space-between;align-items:center;border-bottom:1px solid var(--separator);background:#fcfbf8;font-size:13px}.brand{font-weight:700;letter-spacing:.07em}.tabs{top:0;z-index:600;background:#fcfbf8}.content{max-width:800px;padding:22px 28px 48px;scroll-margin-top:66px}.hero{text-align:left;padding:10px 0 26px}.hero h1{font-size:38px;font-weight:650}.eyebrow{font-size:12px;font-weight:700;letter-spacing:.15em;color:var(--accent);margin-bottom:10px}.hero .subtitle{font-size:15px;margin-top:12px}.info-card{box-shadow:none;border:1px solid #e4e6df}.info-card .label{font-size:11px;letter-spacing:.04em}.info-card .value{font-size:14px}.day-button{display:block;width:100%;text-align:left;border:1px solid #e3e6df;box-shadow:none;font-family:inherit}.day-button:hover{border-color:#176764}.day-button .name{font-size:16px}.card{box-shadow:none;border:1px solid #e3e6df;cursor:default}.card p{margin-top:6px}.card .name{font-size:17px}.status{display:inline-block;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;background:#eceeea;color:#52615a;margin:2px 0 6px}.status.booked{background:#e5f2e9;color:#256444}.status.pending{background:#f7eddd;color:#866234}.secondary{background:#edf0eb;color:#47574e}.details{padding-top:8px}.details summary{cursor:pointer;color:#44574b;font-weight:600}.details p{margin-top:8px}.table-wrap{overflow-x:auto;background:#fff;border:1px solid #e3e6df;border-radius:14px}table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:12px;vertical-align:top;border-bottom:1px solid #eee}th{color:#697568;background:#f9faf7;font-weight:600}tr:last-child td{border-bottom:0}.small-note{font-size:12px;color:#68716b;margin:10px 0;line-height:1.7}.pay-summary{box-shadow:none;border:1px solid #e3e6df;padding:16px}.sources{font-size:12px;color:#68716b;margin-top:22px;border-top:1px solid #ddd;padding-top:16px}.sources summary{cursor:pointer;font-weight:600}.sources p{margin:9px 0}.sources ul{padding-left:18px}.sources li{margin:6px 0}.pin{width:30px;height:30px;border:2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;box-shadow:0 2px 8px #0003}.pin.optional{opacity:.6;border-style:dashed}.map-fallback{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;color:#416158;text-align:center}.map-fallback p{max-width:360px}.mountain{font-size:100px;font-weight:200}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #e3b666;outline-offset:3px}.route-bar{line-height:1.8}.day-head{padding-top:8px}.day-head h2{font-size:28px}.day-head .eyebrow{font-size:12px}#content h3{font-weight:650}
+@media(max-width:800px){.layout{display:block}.map-panel{height:35dvh;min-height:240px;z-index:650}.map-panel #map{min-height:0}.tabs{top:max(35dvh,240px);padding:10px 12px}.topbar{display:none}.content{padding:20px 16px 36px;scroll-margin-top:calc(max(35dvh,240px) + 60px)}.hero h1{font-size:31px}.map-note{bottom:18px;font-size:10px;max-width:calc(100% - 50px)}.table-wrap table{min-width:340px}.btn{padding:9px 12px}.info-card{padding:14px}.day-button .name{font-size:15px}}
+@media print{.layout{display:block}.map-panel,.tabs,.topbar,.links,.map-note{display:none}.content{max-width:none;padding:0}.card,.pay-summary,.info-card{break-inside:avoid}.day-head{break-before:page}.details{display:block}.details p{display:block}body{background:#fff}.sources{display:block}}
+
+</style>
+</head>
+<body><div class="layout"><aside class="map-panel" aria-label="行程地点地图"><div id="map"></div><div class="map-note">虚线 = 地点顺序 · 实际道路请打开导航</div></aside><main class="plan-panel"><header class="topbar"><span class="brand">FUJI / 2026</span><button class="btn secondary" onclick="printPlan()">打印完整行程</button></header><nav class="tabs" id="tabs" aria-label="选择日期"></nav><div class="content" id="content"></div></main></div><noscript><p>请启用JavaScript查看交互地图，或阅读同目录的富士山行程.md。</p></noscript><script>
+
+const HOTEL = {"name": "Fuji Speedway Hotel", "lat": 35.3671972, "lng": 138.9173596, "query": "Fuji Speedway Hotel 645 Omika Oyama Shizuoka Japan"};
+const DAYS = [{"id": 0, "label": "总览", "color": "#176764", "locations": []}, {"id": 1, "label": "11/26 周四", "title": "落地，去 Speedway", "date": "2026年11月26日 · 成田 → 小山町", "color": "#176764", "route": "成田机场 → 丰田成田空港店取车 → Fuji Speedway Hotel", "drive": "纯驾驶预留约3小时；机场手续、取车和休息另计。", "meal": "晚餐以抵达途中简餐为主；酒店餐饮如要使用，先确认最晚点餐时间。", "locations": [{"name": "成田机场 NRT", "lat": 35.772, "lng": 140.3929, "type": "transport", "time": "15:05", "desc": "UA837 抵达。先完成入境、取行李及取车；不安排观景停靠。", "query": "Narita International Airport Japan", "detail": "先在到达层丰田柜台办理手续，再乘接驳车去成田空港店；官方指南约15–20分钟，等候另计。T1从中央口C1到20号接驳点，T2从北口2到29号接驳点；以当天柜台指引为准。预约16:00取车，距15:05落地仅55分钟，建议提前联系门店确认晚到保留及取车时间。", "source": "https://rent.toyota.co.jp/shop/route/1_0020.html"}, {"name": "丰田租车 · 成田空港店", "lat": 35.7827462165, "lng": 140.382192531, "type": "transport", "time": "16:00 · 预约时间，需确认晚到安排", "desc": "预订已确认，雪胎车已安排；柜台接驳后到门店提车。", "query": "トヨタレンタカー 成田空港店 成田市取香530-13", "status": "已确认 · 雪胎已安排", "budget": "全程报价 ¥84,942（约US$538.60） · 到店信用卡支付", "source": "https://rent.toyota.co.jp/shop/route/1_0020.html", "detail": "取车：2026/11/26 16:00，日本时间。成田市取香530-13；门店电话0476-32-1020。C3级、自动挡、禁烟，未指定具体车型或驱动形式；不能视为保证Prius。已加入免責補償和NOC免除，雪胎已明确安排。ETC卡未在邮件中列出。邮件已记UA837，但晚到保留仍需与门店确认；未另行约定时，超过预约1小时可能取消。", "routeStart": true}, {"name": "Fuji Speedway Hotel", "lat": 35.3671972, "lng": 138.9173596, "type": "hotel", "time": "约20:00–21:00 · 情景估算", "desc": "先吃饭、休息。首晚天黑后到达，富士山景留给27日早上。", "query": "Fuji Speedway Hotel 645 Omika Oyama Shizuoka Japan", "status": "官方订单截图", "budget": "1晚 / 2人：¥79,615.50（约US$504.82）", "source": "https://www.hyatt.com/unbound-collection/en-US/fswub-fuji-speedway-hotel", "detail": "房型：1 King Bed, Mount Fuji View, Deluxe。含页面列出的税费、入汤税及服务费。取消截止：日本时间11/25 23:59；逾期收1晚。截图未显示独立的预订确认编号；晚到时间需提前告知酒店。"}]}, {"id": 2, "label": "11/27 周五", "title": "把白天留给酒店", "date": "2026年11月27日 · Speedway → 富士吉田", "color": "#ac7443", "route": "Fuji Speedway Hotel → TOKI", "drive": "约1–1.5小时，规划估算；不含中途停靠。", "meal": "早餐、午餐优先在酒店安排；晚餐在富士吉田 / 河口湖附近解决，TOKI是否含餐待订单详情确认。", "locations": [{"name": "Fuji Speedway Hotel", "lat": 35.3671972, "lng": 138.9173596, "type": "hotel", "time": "上午至下午", "desc": "房间看山、早餐、温泉与酒店体验。当天不再塞远处景点。", "query": "Fuji Speedway Hotel 645 Omika Oyama Shizuoka Japan", "status": "16点退房待确认", "source": "https://www.hyatt.com/unbound-collection/en-US/fswub-fuji-speedway-hotel/hotel-info", "detail": "页面标准退房12:00。Globalist可申请16:00退房，但本酒店官网标为Resort Property，是否可用需酒店确认；未确认时按12点退房衔接。博物馆营业和门票另看官方安排。"}, {"name": "Fuji Grand Villa – TOKI", "lat": 35.4895705, "lng": 138.7751207, "type": "hotel", "time": "15:00后入住 · 若16点离开Speedway，约17:00–17:30到", "desc": "已订 Type A 屋顶影院别墅，1晚、2人。到店后以休息和屋顶观景为主。", "query": "富士グランヴィラ TOKI 新倉2855-1", "status": "已订 27→28", "budget": "US$164.50 (实付)", "source": "https://fujigran.toki223.com/access/", "detail": "费用：原订单US$264.50（含页面税费），CSP hotel credit抵扣US$100，US$164.50 (实付)。27日15:00入住，首张订单28日10:00退房。免费取消截止为日本时间11/13 00:00，即11/12结束时。28日晚已另订同Type A房型，两晚原订单金额共US$557.52，扣除两笔各US$100的CSP hotel credit后合计US$357.52 (实付)。两张订单需要酒店关联；同一栋连续入住和中间不用退房仍需酒店安排。Type A内有一张Double及额外单床，符合使用一张大床的需求；早餐未在截图显示。"}]}, {"id": 3, "label": "11/28 周六", "title": "湖畔看富士山", "date": "2026年11月28日 · 河口湖为主，山中湖备选", "color": "#48759b", "route": "TOKI → 大石公园 → TOKI；山中湖按云量、路况和体力选择", "drive": "湖区观景时间保持弹性；不强制一天跑完两个湖。", "meal": "午餐在河口湖北岸或富士吉田，晚餐在当晚住宿附近；本版先保留用餐区域，不把未核实餐厅当推荐。", "locations": [{"name": "Fuji Grand Villa – TOKI", "lat": 35.4895705, "lng": 138.7751207, "type": "hotel", "time": "早上", "desc": "先看看屋顶和山顶云量，再决定湖区顺序。", "query": "富士グランヴィラ TOKI 新倉2855-1", "status": "27、28两晚均已订", "detail": "两张订单都为Type A，原订单金额共US$557.52，扣除两笔CSP hotel credit后共US$357.52 (实付)。请酒店关联订单并尽量安排同一栋连续住；如果需要换房，先确认28日行李存放与房间衔接。不要把同房型理解为已经保证不换房。"}, {"name": "大石公园", "lat": 35.5230652, "lng": 138.7461483, "type": "spot", "time": "上午 · 建议停留45–90分钟", "desc": "以湖面和富士山为主，走一段湖畔就好。11月底不把花海或红叶盛期当保证。", "query": "大石公園 富士河口湖町", "source": "https://www.yamanashi-kankou.jp/kankou/spot/p_8334.html", "detail": "根据当天云量决定早晚，不为了固定时间表错过清晰山景。逆さ富士需要水面较平静，不保证出现。"}, {"name": "Fuji Grand Villa – TOKI", "lat": 35.4895705, "lng": 138.7751207, "type": "hotel", "time": "下午 / 晚上 · 第二张订单15:00起入住", "desc": "28→29已确认同Type A屋顶影院别墅，1晚、2人。继续把时间留给湖畔和屋顶观景。", "query": "富士グランヴィラ TOKI 新倉2855-1", "status": "已订 28→29", "source": "https://fujigran.toki223.com/", "detail": "费用：原订单US$293.02（含页面税费），CSP hotel credit抵扣US$100，US$193.02 (实付)。28日15:00入住，29日10:00退房。免费取消截止：日本时间11/14 00:00，即11/13结束时。与27日晚是两张独立订单，房型相同；两晚原订单金额共US$557.52，扣除两笔各US$100的CSP hotel credit后合计US$357.52 (实付)，连续使用同一栋需酒店安排。早餐未在截图显示。", "budget": "US$193.02 (实付)"}, {"name": "山中湖 · 长池亲水公园", "lat": 35.42704, "lng": 138.87118, "type": "spot", "time": "—", "desc": "山中湖方向更清楚时，改去这里看湖面与富士山。可替换大石公园，不必两处都跑。", "query": "長池親水公園 山中湖", "source": "https://www.yamanashi-kankou.jp/viewpoint/pub/pvp038.html", "detail": "湖岸停车后步行观景；不把海拔更高的全景台或山路加入默认路线。"}]}, {"id": 4, "label": "11/29 周日", "title": "南下十国峠", "date": "2026年11月29日 · 富士吉田 → 十国峠", "color": "#826a92", "route": "TOKI → 御殿场方向 → 十国峠住宿区前台", "drive": "直接转移预留约2–2.5小时；停车、吃饭和观景另加，建议上午出发。", "meal": "午餐在南下途中解决；晚餐BBQ和次日早餐已经包含在已订套餐中。", "locations": [{"name": "Fuji Grand Villa – TOKI", "lat": 35.4895705, "lng": 138.7751207, "type": "hotel", "time": "10:00前退房", "desc": "早上天气好可以在屋顶补看山，不再绕远。当天以准时、从容到 Glamping 为主。", "query": "富士グランヴィラ TOKI 新倉2855-1", "detail": "28日晚订单已确认，29日10:00退房。吃完早餐、收好行李再出发；若先在沿途吃午餐或观景，需要额外预留停靠时间。"}, {"name": "THE GLAMPING 箱根十国峠", "lat": 35.1250674, "lng": 139.0436811, "type": "hotel", "time": "15:00左右到 · 标准入住15:00–17:00", "desc": "29→30已订Suite Villa，含BBQ晚餐和早餐。日落前入住，留时间看景。", "query": "THE GLAMPING 箱根十国峠 熱海市伊豆山1146-6", "status": "已订 29→30", "budget": "US$223.04 / 1晚、2人，含早晚餐", "source": "https://www.jukkoku-cable.jp/glamping/access/index.html", "detail": "自驾导航到住宿区内受付フロント，地址：静冈县热海市伊豆山字日金山1146-6。不要开到森之站 / 缆车下站当作前台。以官方到达示意及住宿方停车编号通知为准；最后一段窄、陡。截图只显示Suite，不推定有桑拿、Sky Deck或客房富士山景。地图点为设施位置示意，不是精确车位。"}]}, {"id": 5, "label": "11/30 周一", "title": "热海午饭，入住小田原 Hilton", "date": "2026年11月30日 · 十国峠 → 热海 → 根府川", "color": "#3c8290", "route": "十国峠 → 热海海滨 / 午饭 → Hilton Odawara", "drive": "十国峠到热海约30–45分钟，热海到Hilton约40–60分钟；均为规划估算，停车和停靠另计。", "meal": "早餐已含；午餐在热海，晚餐在酒店或附近另付。尽量15:00左右到酒店，把下午留给酒店体验。", "locations": [{"name": "THE GLAMPING 箱根十国峠", "lat": 35.1250674, "lng": 139.0436811, "type": "hotel", "time": "早餐后 · 11:00前退房", "desc": "天气允许时在山顶看一轮富士山和海景，再下山。", "query": "THE GLAMPING 箱根十国峠 熱海市伊豆山1146-6", "source": "https://www.jukkoku-cable.jp/glamping/guide/index.html", "detail": "官网退房9:00–11:00；实际订单优先。户外及缆车受风、雨和运行状态影响，天气不好就早点去热海。"}, {"name": "热海海滨 · Sun Beach", "lat": 35.095, "lng": 139.075, "type": "spot", "time": "中午 · 午饭及短散步", "desc": "海边散步、吃午饭，之后沿海北上根府川的Hilton。控制停留，尽量15:00左右入住。", "query": "熱海サンビーチ", "source": "https://www.ataminews.gr.jp/spot/119", "detail": "地图为海滨区域示意，具体停车按导航和现场标识。不是11月底游泳安排。"}, {"name": "Hilton Odawara Resort & Spa", "lat": 35.2068022, "lng": 139.1316376, "type": "hotel", "query": "ヒルトン小田原リゾート＆スパ 小田原市根府川583-1", "source": "https://www.city.odawara.kanagawa.jp/kanko/stay/hilton/", "time": "15:00起入住 · 建议15:00左右到", "status": "已订 11/30→12/1 · Twin 双床", "budget": "¥34,752（约US$220.35）（含税及服务费） · US$200 credit 待抵扣", "desc": "已订Hilton Twin Room，1晚、2位成人。热海午饭和海边散步后北上入住，下午留给酒店。", "detail": "入住2026/11/30 15:00，退房12/1 12:00，均为日本时间。房型HILTON TWIN ROOM，双床，不能标成King/Queen/Double，也未确认拼床。HONORS DISCOUNT：房费¥27,000 + 税费¥3,432 + 服务费¥4,320 = ¥34,752（约US$220.35）。邮件要求信用卡担保，未证明已扣款。免费取消截止日本时间11/29 23:59；逾期罚首晚房费及税费。按你提供的US$200 credit单独记录，尚未核实到账或最终汇率，因此未写成实付。最新Nor1邮件明确取消的是付费升级申请，原Hilton Twin Room仍保留，不计入升级费。邮箱另有Corner Twin确认单和住宿取消邮件，但取消邮件未标明对应确认号；行程采用最新邮件明确保留的Twin订单。早餐是否已选为Diamond MyWay权益需确认，邮件未显示含晚餐。地址：神奈川县小田原市根府川583-1。地图为酒店设施定位，车辆入口按导航及现场标识。"}]}, {"id": 6, "label": "12/1 周二", "title": "回到东京", "date": "2026年12月1日 · 小田原 / 根府川 → 东京站 → 赤坂", "color": "#63716b", "route": "Hilton Odawara → 东京站日本桥口还车 → 东京 ANA 洲际", "drive": "Hilton到东京站预留约2–2.5小时驾驶；堵车、加油及还车手续另计。建议12:00左右出发，16:00前还车后转乘去酒店。", "meal": "早餐在Hilton，Diamond早餐权益待确认；午餐按出发进度安排，晚餐在东京酒店附近。", "locations": [{"name": "Hilton Odawara Resort & Spa", "lat": 35.2068022, "lng": 139.1316376, "type": "hotel", "query": "ヒルトン小田原リゾート＆スパ 小田原市根府川583-1", "source": "https://www.city.odawara.kanagawa.jp/kanko/stay/hilton/", "time": "上午享用早餐 · 12:00退房", "status": "已订 · 标准退房12:00", "budget": "¥34,752（约US$220.35）（含税及服务费） · US$200 credit 待抵扣", "desc": "早上留给酒店，12:00退房后前往东京站还车；早餐权益待确认。", "detail": "标准退房12:00，不预设延迟退房。建议12:00左右出发，东京站日本桥口店还车预约16:00；预留加油、东京市区堵车及还车手续时间。还车后转乘去ANA洲际。入住2026/11/30 15:00，退房12/1 12:00，均为日本时间。房型HILTON TWIN ROOM，双床，不能标成King/Queen/Double，也未确认拼床。HONORS DISCOUNT：房费¥27,000 + 税费¥3,432 + 服务费¥4,320 = ¥34,752（约US$220.35）。邮件要求信用卡担保，未证明已扣款。免费取消截止日本时间11/29 23:59；逾期罚首晚房费及税费。按你提供的US$200 credit单独记录，尚未核实到账或最终汇率，因此未写成实付。最新Nor1邮件明确取消的是付费升级申请，原Hilton Twin Room仍保留，不计入升级费。邮箱另有Corner Twin确认单和住宿取消邮件，但取消邮件未标明对应确认号；行程采用最新邮件明确保留的Twin订单。早餐是否已选为Diamond MyWay权益需确认，邮件未显示含晚餐。地址：神奈川县小田原市根府川583-1。地图为酒店设施定位，车辆入口按导航及现场标识。"}, {"name": "丰田租车 · 东京站日本桥口店", "lat": 35.683212251973, "lng": 139.76974884057, "type": "transport", "time": "16:00前 · 还车预约16:00", "desc": "在东京站日本桥口还车，之后乘出租车或公共交通去 ANA 洲际。", "query": "トヨタレンタカー 東京駅日本橋口店 丸の内1-8-1", "status": "还车门店已确认", "source": "https://rent.toyota.co.jp/shop/detail_modal.aspx?eCode=01V&mode=&rCode=63601&udFlg=2", "detail": "还车：2026/12/1 16:00，日本时间。千代田区丸の内1-8-1，トラストタワーN館B2F停车场；电话03-5220-2220。地下车库入口标识为SHANGRILAHOTEL，没有丰田租车招牌；官方MAPCODE 647594*83。地图点用于建筑定位，车辆入库按官方入口说明。建议提前到店，留出加油和还车手续时间。", "routeEnd": true}, {"name": "东京 ANA 洲际", "lat": 35.6682139, "lng": 139.7408331, "type": "hotel", "time": "还车后 · 下午 / 傍晚", "desc": "按你的安排回东京 ANA 洲际，本段富士山行程结束。", "query": "ANA InterContinental Tokyo 1-12-33 Akasaka", "status": "用户指定目的地", "source": "https://anaintercontinental-tokyo.jp/location/", "detail": "地址：东京港区赤坂1-12-33。未从截图核实本晚房型、订单或最终价格。"}]}];
+const STAYS = [["11/26", "Speedway", "富士山景 Deluxe King", "¥79,615.50（约US$504.82）", "官方订单截图"], ["11/27", "TOKI", "Type A 屋顶影院别墅", "US$164.50 (实付)", "已订"], ["11/28", "TOKI", "Type A 屋顶影院别墅", "US$193.02 (实付)", "已订"], ["11/29", "十国峠 Glamping", "Suite Villa / 早晚餐", "US$223.04", "已订"], ["11/30", "Hilton Odawara", "Hilton Twin Room · 双床", "¥34,752（约US$220.35）；US$200 credit 待抵扣", "已订"], ["12/1", "东京 ANA 洲际", "用户指定", "未核实", "按用户安排"]];
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function overviewContent(){return `
+<div class="hero"><p class="eyebrow">FUJI · LAKES · COAST</p><h1>富士山，慢慢看</h1><p class="subtitle">2026.11.26 — 12.01 · 两位成人 · 自驾参考行程</p></div>
+<div class="info-grid">
+ <div class="info-card"><div class="label">抵达</div><div class="value">UA837 · 成田<br>11/26 15:05</div></div>
+ <div class="info-card"><div class="label">住宿顺序</div><div class="value">Speedway → TOKI<br>十国峠 → 热海午饭 → 小田原 Hilton → 东京</div></div>
+ <div class="info-card"><div class="label">节奏</div><div class="value">酒店体验 + 湖畔观景<br>清楚的山景优先</div></div>
+ <div class="info-card"><div class="label">住宿进度</div><div class="value">TOKI 27、28两晚已订<br>30日小田原 Hilton 已订</div></div>
+</div>
+<div class="section-head">每天怎么走</div>
+<div class="day-list">${DAYS.slice(1).map(d=>`<button class="card day-button" onclick="go(${d.id})"><div class="name"><span class="dot" style="background:${d.color}"></span>${d.label} · ${d.title}</div><div class="desc">${d.route}</div></button>`).join('')}</div>
+<div class="section-head">住宿与已知费用</div>
+<div class="table-wrap"><table><thead><tr><th>日期 / 酒店</th><th>房型与费用</th><th>状态</th></tr></thead><tbody>${STAYS.map(s=>`<tr><td>${s[0]}<br><b>${s[1]}</b></td><td>${s[2]}<br><b>${s[3]}</b></td><td><span class="status ${s[4]==='已订'?'booked':'pending'}">${s[4]}</span></td></tr>`).join('')}</tbody></table></div>
+<p class="small-note">费用保留原币种，均为一间房、两人。TOKI原订单金额为US$264.50和US$293.02；按你提供的每晚US$100 CSP hotel credit抵扣后，分别标为US$164.50 (实付) 和US$193.02 (实付)，两晚共US$357.52 (实付)。加上十国峠US$223.04，这三晚净费用合计US$580.56；30日Hilton含税及服务费¥34,752（约US$220.35），US$200 credit尚待抵扣，暂不标实付；12/1东京酒店费用未核实。</p>
+<p class="small-note">美元估算按2026/10/05 1 USD = ¥157.71；实际以信用卡结算汇率为准。Hilton若足额抵扣US$200，预计净额约US$20.35，尚非实付。五晚住宿约US$1,305.74（已减TOKI两笔credit、未减Hilton credit）；若Hilton足额抵扣，约US$1,105.74，加租车共约US$1,644.33。不含12/1东京住宿、餐饮、油费、高速、停车。<a href="https://wise.com/in/currency-converter/usd-to-jpy-rate/history/05-10-2026" target="_blank" rel="noopener">汇率来源：Wise</a></p>
+<div class="section-head">租车 · 预订已确认</div>
+<div class="table-wrap"><table><tbody>
+<tr><td>取车 · 日本时间</td><td><b>11/26 16:00 · 丰田成田空港店</b><br>机场柜台办理后接驳到门店</td></tr>
+<tr><td>还车 · 日本时间</td><td><b>12/1 16:00 · 东京站日本桥口店</b><br>トラストタワーN館B2F，之后转乘去 ANA 洲际</td></tr>
+<tr><td>车辆与装备</td><td>C3级 · 自动挡 · 禁烟<br><b>雪胎已确认安排</b>；具体车型未指定；ETC卡未在邮件列出</td></tr>
+<tr><td>保障</td><td>免責補償 + NOC免除</td></tr>
+<tr><td>确认邮件报价</td><td><b>¥84,942（约US$538.60）（含税）</b><br>到店信用卡支付，尚非实付金额</td></tr>
+</tbody></table></div>
+<details class="sources"><summary>费用明细与预订条件</summary><p>基本料金¥66,880 − Hertz Gold Plus Rewards折扣¥6,688 + 免責補償¥5,500 + 异地还车¥5,500 + 选项¥13,750 = ¥84,942（约US$538.60）。NOC免除费率¥550/24小时；选项总额未单列雪胎费用，邮件另附部分特殊装备费用可能另计的通用说明，最终以门店结算为准。油费、高速和停车另预算。</p><p>最新确认邮件日期：2026/10/5（日本时间），已明确接受预订并安排雪胎车。7天前或更早取消免费；之后按基础租金20% / 30% / 50%分档，轿车取消费上限¥13,000。未另行约定时，超过取车预约1小时可能取消。未指定Prius；ETC卡需另确认。</p><p><a href="https://rent.toyota.co.jp/shop/route/1_0020.html" target="_blank" rel="noopener">成田取车官方指南</a> · <a href="https://rent.toyota.co.jp/shop/detail_modal.aspx?eCode=01V&amp;mode=&amp;rCode=63601&amp;udFlg=2" target="_blank" rel="noopener">东京站还车官方信息</a></p></details>
+<div class="pay-summary"><h4>16:00取车距离落地仅55分钟</h4>入境、行李、柜台办理和接驳都需时间，建议联系成田门店确认晚到保留或调整取车时间。邮件已记录UA837，但不能视为已获准延后取车。当前预订时间仍为16:00。</div>
+<div class="pay-summary"><h4>11/30 Hilton · 已订双床房</h4>Hilton Twin Room，1晚、2位成人，¥34,752（约US$220.35）含税及服务费。US$200 credit单列为待抵扣，未确认实付。11/30 15:00入住、12/1 12:00退房；免费取消截止日本时间11/29 23:59。最新Nor1邮件明确原Twin订单仍保留，取消的是付费升级申请；不计升级费。邮箱另有Corner Twin确认及住宿取消邮件，取消对应号未明确。<br><a href="https://www.city.odawara.kanagawa.jp/kanko/stay/hilton/" target="_blank" rel="noopener">小田原市酒店资料</a> · <a href="https://mapfan.com/spots/SCYHY%2CJ%2C1FT" target="_blank" rel="noopener">酒店地图位置</a></div>
+<div class="section-head">影响安排的事项</div>
+<div class="pay-summary"><h4>27日16:00退房，仍待确认</h4>Speedway官网标为度假酒店，Globalist延迟退房取决于可用性。若没有确认，按12:00退房调整，不影响当天到TOKI。 <a href="https://world.hyatt.com/content/gp/en/my-account/badges/late-checkout.html" target="_blank" rel="noopener">官方权益</a></div>
+<div class="pay-summary"><h4>29日直接去住宿区前台</h4>十国峠Glamping的Suite标准入住15:00–17:00。自驾前台在别墅区内，使用住宿方到达图与车位通知。 <a href="https://www.jukkoku-cable.jp/glamping/access/index.html" target="_blank" rel="noopener">官方到达说明</a></div>
+<div class="pay-summary"><h4>观景按天气交换，山路不作默认加项</h4>28日以河口湖湖畔为主，山中湖备选。富士山五合目与更高的观景台没有排进基础路线；若临近出行道路和装备条件合适，再决定是否增加。山中湖、十国峠仍是高地，雪胎已确认安排，但山中湖、十国峠仍按当天冰雪与道路管制决定是否通行。</div>
+<details class="sources"><summary>信息来源与更新说明</summary><p>更新于2026/10/05。酒店信息来自你提供的截图及Hilton确认邮件，租车信息来自最新确认邮件与官方门店指南；不保存姓名、联系方式、卡号或预订编号。车程均为规划预算，不是实时导航。</p><ul>
+<li><a href="https://www.hyatt.com/unbound-collection/en-US/fswub-fuji-speedway-hotel" target="_blank" rel="noopener">Speedway 官方</a></li>
+<li><a href="https://fujigran.toki223.com/access/" target="_blank" rel="noopener">TOKI 官方位置</a></li>
+<li><a href="https://www.jukkoku-cable.jp/glamping/guide/index.html" target="_blank" rel="noopener">Glamping 官方入住时间</a></li>
+<li><a href="https://www.yamanashi-kankou.jp/kankou/spot/p_8334.html" target="_blank" rel="noopener">大石公园官方旅游资料</a> · <a href="https://www.yamanashi-kankou.jp/viewpoint/pub/pvp038.html" target="_blank" rel="noopener">长池亲水公园官方资料</a></li>
+<li><a href="https://www.ataminews.gr.jp/spot/119" target="_blank" rel="noopener">热海官方旅游资料</a> · <a href="https://anaintercontinental-tokyo.jp/location/" target="_blank" rel="noopener">东京洲际位置</a></li>
+<li>地图坐标用于区域定位。TOKI和长池取官方地图链接；大石、十国峠与东京洲际参考MapFan，Speedway参考住宿地图资料。机场、热海是区域示意点；Hilton坐标参考MapFan，导航使用地点名称和地址。</li>
+</ul><p>本版没有做具体餐厅的大众点评 / 小红书口碑审查，餐饮只保留顺路区域和订单已含餐内容。</p></details>
+`;}
+const colors={hotel:'#ac7443',spot:'#48759b',transport:'#63716b',food:'#a55c52',drink:'#826a92'};
+const symbols={hotel:'宿',spot:'景',transport:'行',food:'餐',drink:'饮'};
+let map=null, markers=[], lines=[];
+if(window.L){
+ map=L.map('map',{center:[35.46,139.1],zoom:9,zoomControl:false});
+ L.control.zoom({position:'topright'}).addTo(map);
+ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+   maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+ }).addTo(map);
+}else{
+ document.getElementById('map').innerHTML='<div class="map-fallback"><div class="mountain">△</div><h2>成田 → 富士山 → 热海 → 东京</h2><p>在线地图暂未加载。右侧 / 下方的每日行程仍可阅读；联网后可使用导航。</p></div>';
+}
+function google(p){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.query||p.name);}
+function routeUrl(d){
+ let p=d.locations.filter(x=>x.time!=='—'&&x.type!=='food');
+ const start=p.findIndex(x=>x.routeStart);if(start>=0)p=p.slice(start);
+ const end=p.findIndex(x=>x.routeEnd);if(end>=0)p=p.slice(0,end+1);
+ const unique=p.filter((x,i)=>i===0||x.query!==p[i-1].query);
+ if(unique.length<2)return google(p[0]);
+ let u='https://www.google.com/maps/dir/?api=1&travelmode=driving&origin='+encodeURIComponent(unique[0].query)+'&destination='+encodeURIComponent(unique.at(-1).query);
+ if(unique.length>2)u+='&waypoints='+encodeURIComponent(unique.slice(1,-1).map(x=>x.query).join('|'));
+ return u;
+}
+function showDay(id){
+ if(!map)return;
+ markers.forEach(m=>map.removeLayer(m));lines.forEach(l=>map.removeLayer(l));markers=[];lines=[];
+ const shown=id===0?DAYS.slice(1):DAYS.filter(d=>d.id===id);
+ const points=[];const seen=new Set();
+ for(const d of shown){
+  const coords=[];
+  for(const [i,p] of d.locations.entries()){
+   const key=p.name+'|'+p.lat+'|'+p.lng;
+   if(p.time!=='—')coords.push([p.lat,p.lng]);
+   if(id===0&&seen.has(key))continue;seen.add(key);
+   points.push([p.lat,p.lng]);
+   const optional=p.time==='—';
+   const ic=L.divIcon({className:'',html:`<div class="pin ${optional?'optional':''}" style="background:${d.color}">${symbols[p.type]||'点'}</div>`,iconSize:[30,30],iconAnchor:[15,15]});
+   const m=L.marker([p.lat,p.lng],{icon:ic}).addTo(map).bindPopup(`<b>${esc(p.name)}</b><br>${esc(p.time==='—'?'备选':p.time)}<br>${esc(p.desc)}<br><a href="${google(p)}" target="_blank" rel="noopener">打开导航</a>`);
+   markers.push(m);
+  }
+  if(coords.length>1){const l=L.polyline(coords,{color:d.color,weight:2.5,opacity:.55,dashArray:'6 7'}).addTo(map);lines.push(l);}
+ }
+ if(points.length)map.fitBounds(points,{padding:[40,40],maxZoom:13});
+}
+function locCard(p,day,index){
+ const status=p.status?`<span class="status ${p.status.startsWith('已订')?'booked':'pending'}">${esc(p.status)}</span>`:'';
+ return `<div class="tl-item"><div class="tl-dot ${p.type}"></div><article class="card"><div class="time">${esc(p.time==='—'?'按天气备选':p.time)}</div><h3 class="name">${esc(p.name)}</h3>${status}<p class="desc">${esc(p.desc)}</p>${p.budget?`<div class="budget">${esc(p.budget)}</div>`:''}${p.detail?`<details class="details"><summary>查看安排 / 订单信息</summary><p>${esc(p.detail)}</p></details>`:''}<div class="links"><a class="btn nav" target="_blank" rel="noopener" href="${google(p)}">导航</a><a class="btn secondary" target="_blank" rel="noopener" href="https://maps.apple.com/?q=${encodeURIComponent(p.query||p.name)}">Apple Maps</a>${p.source?`<a class="btn secondary" target="_blank" rel="noopener" href="${p.source}">官方信息</a>`:''}<button class="btn secondary" onclick="focusPlace(${day},${index})">地图定位</button></div></article></div>`;
+}
+function renderDay(id){
+ const d=DAYS.find(x=>x.id===id);
+ const main=d.locations.map((p,i)=>({p,i})).filter(x=>x.p.time!=='—');
+ const alt=d.locations.map((p,i)=>({p,i})).filter(x=>x.p.time==='—');
+ return `<div class="day-head"><p class="eyebrow">${d.label}</p><h2>${d.title}</h2><p>${d.date}</p></div><div class="route-bar"><strong>${esc(d.route)}</strong><br>${esc(d.drive)}<div class="links"><a class="btn nav" href="${routeUrl(d)}" target="_blank" rel="noopener">打开当天驾车路线</a></div></div><div class="section-head">当天安排</div><div class="timeline">${main.map(x=>locCard(x.p,id,x.i)).join('')}</div>${alt.length?`<div class="section-head">天气好再选，替换主线即可</div><div class="timeline">${alt.map(x=>locCard(x.p,id,x.i)).join('')}</div>`:''}<div class="pay-summary"><h4>用餐区域</h4>${esc(d.meal)}</div><p class="small-note">时间为参考，驾驶时长不是实时导航。地图虚线表示地点顺序，不是实际道路。</p>`;
+}
+function focusPlace(day,index){if(!map)return;const p=DAYS.find(d=>d.id===day).locations[index];map.flyTo([p.lat,p.lng],14);markers.find(m=>m.getLatLng().lat===p.lat&&m.getLatLng().lng===p.lng)?.openPopup();}
+const tabs=document.getElementById('tabs');
+for(const d of DAYS){const b=document.createElement('button');b.className='tab';b.dataset.id=d.id;b.textContent=d.label;b.setAttribute('aria-label',d.label+'行程');b.addEventListener('click',()=>go(d.id));tabs.appendChild(b);}
+function go(id){
+ document.getElementById('content').innerHTML=id===0?overviewContent():renderDay(id);
+ tabs.querySelectorAll('button').forEach(b=>{b.classList.toggle('active',+b.dataset.id===id);b.setAttribute('aria-pressed',String(+b.dataset.id===id));});
+ showDay(id);document.getElementById('content').scrollIntoView({block:'start',behavior:'smooth'});
+ try{history.replaceState(null,'','#day='+id);}catch(e){}
+}
+function printPlan(){const selected=Number(location.hash.match(/day=(\d+)/)?.[1]||0);document.getElementById('content').innerHTML=overviewContent()+DAYS.slice(1).map(d=>renderDay(d.id)).join('');window.print();go(selected);}
+const requested=Number(location.hash.match(/day=(\d+)/)?.[1]||0);go(DAYS.some(d=>d.id===requested)?requested:0);
+
+</script></body></html>

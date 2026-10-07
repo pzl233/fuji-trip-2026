@@ -308,6 +308,7 @@ function showDay(id){
  for(const d of shown){
   const coords=[];
   for(const [i,p] of d.locations.entries()){
+   if(!Number.isFinite(p.lat)||!Number.isFinite(p.lng))continue;
    const key=p.name+'|'+p.lat+'|'+p.lng;
    if(p.time!=='—')coords.push([p.lat,p.lng]);
    if(id===0&&seen.has(key))continue;seen.add(key);
@@ -331,7 +332,7 @@ function renderDay(id){
  const alt=d.locations.map((p,i)=>({p,i})).filter(x=>x.p.time==='—');
  return `<div class="day-head"><p class="eyebrow">${d.label}</p><h2>${d.title}</h2><p>${d.date}</p></div><div class="route-bar"><strong>${esc(d.route)}</strong><br>${esc(d.drive)}<div class="links"><a class="btn nav" href="${routeUrl(d)}" target="_blank" rel="noopener">打开当天驾车路线</a></div></div><div class="section-head">当天安排</div><div class="timeline">${main.map(x=>locCard(x.p,id,x.i)).join('')}</div>${alt.length?`<div class="section-head">天气好再选，替换主线即可</div><div class="timeline">${alt.map(x=>locCard(x.p,id,x.i)).join('')}</div>`:''}<div class="pay-summary"><h4>用餐区域</h4>${esc(d.meal)}</div><p class="small-note">时间为参考，驾驶时长不是实时导航。地图虚线表示地点顺序，不是实际道路。</p>`;
 }
-function focusPlace(day,index){if(!map)return;const p=DAYS.find(d=>d.id===day).locations[index];map.flyTo([p.lat,p.lng],14);markers.find(m=>m.getLatLng().lat===p.lat&&m.getLatLng().lng===p.lng)?.openPopup();}
+function focusPlace(day,index){if(!map)return;const p=DAYS.find(d=>d.id===day).locations[index];if(!Number.isFinite(p.lat)||!Number.isFinite(p.lng))return;map.flyTo([p.lat,p.lng],14);markers.find(m=>m.getLatLng().lat===p.lat&&m.getLatLng().lng===p.lng)?.openPopup();}
 const tabs=document.getElementById('tabs');
 for(const d of DAYS){const b=document.createElement('button');b.className='tab';b.dataset.id=d.id;b.textContent=d.label;b.setAttribute('aria-label',d.label+'行程');b.addEventListener('click',()=>go(d.id));tabs.appendChild(b);}
 function go(id){

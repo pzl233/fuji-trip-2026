@@ -311,11 +311,12 @@ function routeUrl(d){
 function showDay(id){
  if(!map)return;
  markers.forEach(m=>map.removeLayer(m));lines.forEach(l=>map.removeLayer(l));markers=[];lines=[];
- const shown=id===-1?DAYS.filter(d=>d.id>0):id===-2?DAYS.filter(d=>d.id>6):id===0?DAYS.filter(d=>d.id>0&&d.id<=6):DAYS.filter(d=>d.id===id);
+ const shown=id===-1?DAYS.filter(d=>d.id>0):id===-2?DAYS.filter(d=>d.id>=9):id===0?DAYS.filter(d=>d.id>0&&d.id<=6):DAYS.filter(d=>d.id===id);
  const points=[];const seen=new Set();
  for(const d of shown){
   const coords=[];
   for(const [i,p] of d.locations.entries()){
+   if((id===-2||id>=9)&&p.region==='tokyo')continue;
    if(!Number.isFinite(p.lat)||!Number.isFinite(p.lng))continue;
    const key=p.name+'|'+p.lat+'|'+p.lng;
    if(p.time!=='—')coords.push([p.lat,p.lng]);
@@ -352,4 +353,4 @@ function go(id){
 function printPlan(){const selected=Number(location.hash.match(/day=(\d+)/)?.[1]||0);document.getElementById('content').innerHTML=overviewContent()+DAYS.slice(1).map(d=>renderDay(d.id)).join('');window.print();go(selected);}
 const originalHash=location.hash;const requested=Number(originalHash.match(/day=(\d+)/)?.[1]||0);go(DAYS.some(d=>d.id===requested)?requested:0);if(originalHash){try{history.replaceState(null,'',originalHash);}catch(e){}}
 
-</script><script src="japan-tabs.js"></script></body></html>
+</script><script src="japan-tabs.js?v=osaka-20261030"></script></body></html>

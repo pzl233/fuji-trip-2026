@@ -1,7 +1,9 @@
-# 富士山自驾行程
+# 日本行程地图
 
-2026年11月26日至12月1日，两位成人。
+[打开网页地图](https://pzl233.github.io/fuji-trip-2026/)
 
-[打开地图](https://pzl233.github.io/fuji-trip-2026/) · [微信长图](https://pzl233.github.io/fuji-trip-2026/wechat-itinerary.png)
+更新：2026/11/08。15个独立日期（11/26–12/10），分为总结、富士山、东京、大阪，包含已确认、计划、待定与可选安排、住宿和分段交通。
 
-地图展示停靠顺序，导航链接打开Google Maps；车程为规划估算，费用以订单及刷卡结算为准。
+地图采用Leaflet / OpenStreetMap，提供按交通方式生成的Google Maps导航；未知准确位置的活动保留在行程，不猜测坐标。
+
+公开文件：index.html、fuji-trip-map.html（相同入口）、trip-style.css、trip-data.js、trip-app.js及文字版itinerary.md。公开数据不含私人确认号或带访问令牌的预订链接。

@@ -1,6 +1,6 @@
 # 日本行程 · 2026/11/26–12/10
 
-更新：2026/11/08。时间均为日本当地时间；计划用时为估算。
+更新：2026/11/10，本次仅核实并更新Torisen预约；其余日期沿用11/08核对记录。时间均为日本当地时间；计划用时为估算。
 
 [打开互动地图](https://pzl233.github.io/fuji-trip-2026/)
 
@@ -302,19 +302,21 @@ Nozomi建议13:00–14:00出发；车次/车票待确认，入住理嘉皇家。
 
 ## 12/8 周二 · 换到大阪站酒店，逛梅田与圣诞灯光
 
-白天购物，傍晚Grand Front/Umekita/Sky Building；20:30烧鸟仅申请。
+白天购物，傍晚Grand Front/Umekita/Sky Building；20:30 Torisen已确认2位吧台，餐券已支付。
 
-- 季节活动和点灯时间以临近官方公告为准。烧鸟仅申请，不计作已确认预约。
-- Sky Building到Torisen转场仍待补；不要套用回酒店的交通时间。
+- 11/10已在官方预约详情核实：12/8 20:30 Torisen，2位Counter吧台席，餐券已支付。建议20:25到店。
+- 季节活动和点灯时间以临近官方公告为准。Sky Building到Torisen转场仍待补；不要套用回酒店的交通时间。
 
 - **11:00前 · [RIHGA退房，转大阪站酒店](https://www.google.com/maps/search/?api=1&query=RIHGA%20Royal%20Hotel%20Osaka%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E4%B8%AD%E4%B9%8B%E5%B3%B65-3-68)**〔计划〕：先寄存行李；房间15:00起
 - **白天 · [梅田购物/午餐](https://www.google.com/maps/search/?api=1&query=%E6%A2%85%E7%94%B0)**〔计划〕：当天路线与店铺待定
 - **15:00后 · [大阪站酒店入住](https://www.google.com/maps/search/?api=1&query=THE%20OSAKA%20STATION%20HOTEL%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E6%A2%85%E7%94%B03-2-2)**〔计划〕：
 - **16:00–17:00 · [Grand Front圣诞活动](https://www.google.com/maps/search/?api=1&query=%E3%82%B0%E3%83%A9%E3%83%B3%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E5%A4%A7%E9%98%AA%20%E5%8D%97%E9%A4%A8%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E5%A4%A7%E6%B7%B1%E7%94%BA4-20)**〔计划〕：
 - **17:00后 · [Umekita公园灯光](https://www.google.com/maps/search/?api=1&query=%E3%81%86%E3%82%81%E3%81%8D%E3%81%9F%E5%85%AC%E5%9C%92%20%E3%82%B0%E3%83%A9%E3%83%B3%E3%82%B0%E3%83%AA%E3%83%BC%E3%83%B3%E5%A4%A7%E9%98%AA)**〔计划〕：暂定Grand Green Osaka／Umekita公园灯光；地图按区域名称查询，未将旧Umekita广场坐标当作公园入口。
-- **约18:00 · [Sky Building圣诞市集](https://www.google.com/maps/search/?api=1&query=%E6%A2%85%E7%94%B0%E3%82%B9%E3%82%AB%E3%82%A4%E3%83%93%E3%83%AB%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E5%A4%A7%E6%B7%80%E4%B8%AD1-1-88)**〔计划〕：烧鸟若确认，不安排正式市集晚餐；赴餐厅需留转场
-- **20:30 · [Yakitori Torisen（焼鳥 とり泉）](https://www.google.com/maps/search/?api=1&query=%E7%84%BC%E9%B3%A5%20%E3%81%A8%E3%82%8A%E6%B3%89%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E5%A0%82%E5%B3%B61-4-26%20%E7%8E%89%E5%AE%B6%E3%83%93%E3%83%AB3F)**〔已申请 · 未获最终确认〕：2位吧台，已提交申请；邮箱未找到最终确认，不能标已订。原费用记录¥40,480，最终餐费/扣款待核对。
-  原费用记录¥40,480 · 最终价格/付款待核对
+- **约18:00 · [Sky Building圣诞市集](https://www.google.com/maps/search/?api=1&query=%E6%A2%85%E7%94%B0%E3%82%B9%E3%82%AB%E3%82%A4%E3%83%93%E3%83%AB%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E5%A4%A7%E6%B7%80%E4%B8%AD1-1-88)**〔计划〕：20:30 Torisen晚餐已确认，市集只安排轻食；建议20:25到店，赴餐厅交通仍待补。
+- **20:30 · [Yakitori Torisen（焼鳥 とり泉）](https://www.google.com/maps/search/?api=1&query=%E7%84%BC%E9%B3%A5%20%E3%81%A8%E3%82%8A%E6%B3%89%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E5%A0%82%E5%B3%B61-4-26%20%E7%8E%89%E5%AE%B6%E3%83%93%E3%83%AB3F)**〔已确认 · 餐券已支付〕：12/8 20:30，2位Counter吧台席已确认。建议20:25到店；迟到超过20分钟可能自动取消。
+  餐券已支付；平台列总额¥40,480（餐券¥35,200＋税费¥3,520＋手续费¥1,760），饮料/额外服务费可能到店另付。
+  着装Smart casual；禁止T恤、短裤、凉鞋，勿使用浓香水。取消费用按日本时间：12/1起30%，12/5起50%，12/8当天100%。
+  [官方餐厅页](https://omakaseje.com/restaurants/um855297)
 
 交通：
 
@@ -322,10 +324,10 @@ Nozomi建议13:00–14:00出发；车次/车票待确认，入住理嘉皇家。
 - 大阪站酒店入住 → Grand Front圣诞活动：步行，约10–15分钟（区域估算）。按具体商场入口调整。
 - Grand Front圣诞活动 → Umekita公园灯光：步行，约5–15分钟（区域估算）。公园具体灯光点位待临近核实。
 - Umekita公园灯光 → Sky Building圣诞市集：步行，约15–20分钟（区域估算）。建议17:40–17:45前后开始往Sky Building走。
-- Sky Building圣诞市集 → Yakitori Torisen（焼鳥 とり泉）：待安排，需补晚餐前转场。烧鸟20:30仅申请，不能套用回酒店时间。
-- Sky Building圣诞市集 → 大阪站酒店入住：步行或出租车备选，步行20–25分钟／出租车10–15分钟。若不去烧鸟的返酒店方案。
+- Sky Building圣诞市集 → Yakitori Torisen（焼鳥 とり泉）：待安排，需补晚餐前转场。20:30 Torisen已确认，建议20:25到店；赴餐厅交通仍待补，不能套用回酒店时间。
+- Sky Building圣诞市集 → 大阪站酒店入住：步行或出租车备选，步行20–25分钟／出租车10–15分钟。不去市集或改行程时的返酒店备选。
 
-午餐梅田待选；20:30 Torisen仅申请。若确认，市集只轻食，不再安排正式晚餐。
+午餐梅田待选；20:30 Torisen已确认2位吧台，餐券已支付；平台列总额¥40,480（餐券¥35,200＋税费¥3,520＋手续费¥1,760）。市集只轻食，不再安排正式晚餐；饮料/额外服务费可能到店另付。
 
 当晚住宿：THE OSAKA STATION HOTEL, Autograph Collection（12/8–12/10，¥109,525，含税费/服务费）
 

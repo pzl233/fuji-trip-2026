@@ -1,7 +1,7 @@
-/* Public itinerary, reviewed 2026-11-08. Private booking evidence is not published. */
+/* Public itinerary: Torisen confirmation updated 2026-11-10; other records retain the 2026-11-08 review. Private booking evidence is not published. */
 window.TRIP_DATA = {
   "title": "日本行程地图",
-  "updatedAt": "2026/11/08",
+  "updatedAt": "2026/11/10",
   "dateRange": "2026/11/26–12/10 · 15天",
   "travellers": "两人同行至12/9；12/10 Han去机场，我入住voco",
   "timezone": "Asia/Tokyo",
@@ -347,8 +347,8 @@ window.TRIP_DATA = {
     },
     {
       "id": "pending-13",
-      "title": "12/8 周二：Torisen最终确认/价格/付款",
-      "detail": "Torisen最终确认/价格/付款；SkyBuilding→Torisen交通；大阪站酒店另一邮箱后续变化。",
+      "title": "12/8 周二：SkyBuilding→Torisen交通",
+      "detail": "SkyBuilding→Torisen交通；大阪站酒店另一邮箱后续变化。",
       "date": "12/8 周二",
       "relatedDay": "2026-12-08",
       "priority": "high"
@@ -2274,15 +2274,15 @@ window.TRIP_DATA = {
       "label": "12/8 周二",
       "section": "osaka",
       "title": "换到大阪站酒店，逛梅田与圣诞灯光",
-      "summary": "白天购物，傍晚Grand Front/Umekita/Sky Building；20:30烧鸟仅申请。",
+      "summary": "白天购物，傍晚Grand Front/Umekita/Sky Building；20:30 Torisen已确认2位吧台，餐券已支付。",
       "notes": [
-        "季节活动和点灯时间以临近官方公告为准。烧鸟仅申请，不计作已确认预约。",
-        "Sky Building到Torisen转场仍待补；不要套用回酒店的交通时间。"
+        "11/10已在官方预约详情核实：12/8 20:30 Torisen，2位Counter吧台席，餐券已支付。建议20:25到店。",
+        "季节活动和点灯时间以临近官方公告为准。Sky Building到Torisen转场仍待补；不要套用回酒店的交通时间。"
       ],
       "lodgingId": [
         "station"
       ],
-      "meals": "午餐梅田待选；20:30 Torisen仅申请。若确认，市集只轻食，不再安排正式晚餐。",
+      "meals": "午餐梅田待选；20:30 Torisen已确认2位吧台，餐券已支付；平台列总额¥40,480（餐券¥35,200＋税费¥3,520＋手续费¥1,760）。市集只轻食，不再安排正式晚餐；饮料/额外服务费可能到店另付。",
       "stops": [
         {
           "id": "d13-e0",
@@ -2355,7 +2355,7 @@ window.TRIP_DATA = {
           "name": "Sky Building圣诞市集",
           "time": "约18:00",
           "status": "planned",
-          "description": "烧鸟若确认，不安排正式市集晚餐；赴餐厅需留转场",
+          "description": "20:30 Torisen晚餐已确认，市集只安排轻食；建议20:25到店，赴餐厅交通仍待补。",
           "type": "spot",
           "lat": 34.7052952,
           "lng": 135.4901486,
@@ -2367,17 +2367,20 @@ window.TRIP_DATA = {
           "id": "d13-e6",
           "name": "Yakitori Torisen（焼鳥 とり泉）",
           "time": "20:30",
-          "status": "pending",
-          "description": "2位吧台，已提交申请；邮箱未找到最终确认，不能标已订。原费用记录¥40,480，最终餐费/扣款待核对。",
+          "status": "confirmed",
+          "description": "12/8 20:30，2位Counter吧台席已确认。建议20:25到店；迟到超过20分钟可能自动取消。",
           "type": "food",
           "lat": 34.696165627982,
           "lng": 135.49806961743,
           "query": "焼鳥 とり泉 大阪市北区堂島1-4-26 玉家ビル3F",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E7%84%BC%E9%B3%A5%20%E3%81%A8%E3%82%8A%E6%B3%89%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E5%A0%82%E5%B3%B61-4-26%20%E7%8E%89%E5%AE%B6%E3%83%93%E3%83%AB3F",
-          "statusLabel": "已申请 · 未获最终确认",
-          "sourceUrl": "https://guide.michelin.com/jp/ja/osaka-region/osaka/restaurant/yakitori-torisen",
+          "statusLabel": "已确认 · 餐券已支付",
+          "sourceUrl": "https://omakaseje.com/restaurants/um855297",
           "address": "大阪市北区堂島1-4-26 玉家ビル3F",
-          "cost": "原费用记录¥40,480 · 最终价格/付款待核对"
+          "cost": "餐券已支付；平台列总额¥40,480（餐券¥35,200＋税费¥3,520＋手续费¥1,760），饮料/额外服务费可能到店另付。",
+          "details": "着装Smart casual；禁止T恤、短裤、凉鞋，勿使用浓香水。取消费用按日本时间：12/1起30%，12/5起50%，12/8当天100%。",
+          "bookingUrl": "https://omakaseje.com/restaurants/um855297",
+          "bookingLabel": "官方餐厅页"
         }
       ],
       "transport": [
@@ -2451,7 +2454,7 @@ window.TRIP_DATA = {
           "toName": "Yakitori Torisen（焼鳥 とり泉）",
           "mode": "待安排",
           "duration": "需补晚餐前转场",
-          "details": "烧鸟20:30仅申请，不能套用回酒店时间。",
+          "details": "20:30 Torisen已确认，建议20:25到店；赴餐厅交通仍待补，不能套用回酒店时间。",
           "status": "pending",
           "from": "d13-e5",
           "to": "d13-e6",
@@ -2467,7 +2470,7 @@ window.TRIP_DATA = {
           "toName": "大阪站酒店入住",
           "mode": "步行或出租车备选",
           "duration": "步行20–25分钟／出租车10–15分钟",
-          "details": "若不去烧鸟的返酒店方案。",
+          "details": "不去市集或改行程时的返酒店备选。",
           "status": "optional",
           "from": "d13-e5",
           "to": "d13-e2",

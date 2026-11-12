@@ -15,8 +15,8 @@
   const mapToggle = document.getElementById('map-toggle-button');
   const locateButton = document.getElementById('locate-button');
   const printButton = document.getElementById('print-button');
-  const state = { section: 'summary', day: null, collapsed: false };
-  const mapState = { map: null, layers: [], markers: new Map(), ready: false, tileLoaded: false, tileFailed: false, userMarker: null };
+  const state = { section: 'summary', day: null, collapsed: false, filters: [] };
+  const mapState = { map: null, layers: [], markers: new Map(), groups: new Map(), ready: false, tileLoaded: false, tileFailed: false, userMarker: null };
   const statusText = { confirmed: '已确认', planned: '计划安排', pending: '待确认', optional: '可选', cancelled: '已取消' };
   const typeText = { hotel: '住宿', spot: '景点', food: '用餐', drink: '休息', transport: '交通' };
   const markerCategories = {
@@ -25,7 +25,14 @@
     hotel: { label: '住宿', drawing: '<path d="M3 18v3M21 18v3M3 10V5h18v5M3 14v-4h18v4M2 14h20v4H2zM12 5v5"/>' },
     transport: { label: '交通', drawing: '<rect x="5" y="2" width="14" height="17" rx="4"/><path d="M5 10h14M12 2v8M8 22l2-3M16 22l-2-3"/><path d="M8 15h1M15 15h1"/>' }
   };
+  const categoryKeys = Object.keys(markerCategories);
+  const validCategory = category => categoryKeys.includes(category);
   const markerCategory = stop => stop.type === 'food' || stop.type === 'drink' ? 'food' : stop.type === 'hotel' ? 'hotel' : stop.type === 'transport' ? 'transport' : 'spot';
+  const categoriesOf = stop => {
+    const categories = (Array.isArray(stop.categories) ? stop.categories : []).filter(validCategory);
+    return categories.length ? [...new Set(categories)] : [markerCategory(stop)];
+  };
+  const matchesFilters = categories => !state.filters.length || categories.some(category => state.filters.includes(category));
   const categoryIcon = category => `<svg class="map-place-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${markerCategories[category].drawing}</svg>`;
   const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
   const safeId = value => String(value || '').replace(/[^a-zA-Z0-9_-]/g, '-');
@@ -136,6 +143,7 @@
   }
   function render(scroll = false) {
     renderNav();
+    updateFilterUi();
     content.innerHTML = state.day ? renderDay(days.find(day => day.id === state.day)) : overviewHtml();
     content.setAttribute('aria-label', state.day ? `${state.day}行程` : `${sections.find(s => s.id === state.section)?.label || '总结'}行程`);
     document.title = `${state.day ? days.find(d => d.id === state.day)?.label + ' · ' : ''}${trip.title || '日本行程地图'}`;
@@ -145,6 +153,7 @@
   function updateHash(replace = false) {
     const params = new URLSearchParams({ section: state.section });
     if (state.day) params.set('date', state.day);
+    if (state.filters.length) params.set('types', state.filters.join(','));
     try { history[replace ? 'replaceState' : 'pushState'](null, '', `#${params.toString()}`); } catch (_) { /* Local-file previews may not permit history changes. */ }
   }
   function readHash() {
@@ -155,6 +164,8 @@
     state.section = sections.some(s => s.id === wantedSection) ? wantedSection : day?.section || 'summary';
     if (day && (state.section === 'summary' || !dayInSection(day, state.section))) state.section = day.section;
     state.day = day?.id || null;
+    const filters = [...new Set((params.get('types') || '').split(',').filter(validCategory))];
+    state.filters = filters.length === Object.keys(markerCategories).length ? [] : filters;
   }
   function selectDay(id, scroll = true) {
     const day = days.find(d => d.id === id);
@@ -162,7 +173,7 @@
     if (state.section === 'summary' || !dayInSection(day, state.section)) state.section = day.section;
     state.day = day.id; updateHash(); render(scroll);
   }
-  function clearMap() { mapState.layers.forEach(layer => mapState.map.removeLayer(layer)); mapState.layers = []; mapState.markers.clear(); }
+  function clearMap() { closePlacePopup(); mapState.layers.forEach(layer => mapState.map.removeLayer(layer)); mapState.layers = []; mapState.markers.clear(); mapState.groups.clear(); }
   function mapMessage(text, warning = false) { if (mapStatus) { mapStatus.textContent = text; mapStatus.classList.toggle('is-warning', warning); } }
   function installMapLegend() {
     const panel = mapNode?.closest('.map-panel');
@@ -170,51 +181,128 @@
     const legend = document.createElement('div');
     legend.className = 'map-category-legend';
     legend.setAttribute('role', 'group');
-    legend.setAttribute('aria-label', '地图地点类别图例，颜色表示预订状态');
-    legend.innerHTML = `<div class="map-legend-items">${Object.entries(markerCategories).map(([category, info]) => `<span class="map-legend-item" data-marker-category="${category}">${categoryIcon(category)}<span>${info.label}</span></span>`).join('')}</div><p>图标看类别，颜色看状态</p>`;
+    legend.setAttribute('aria-label', '地图类别筛选，可多选；显示匹配任一类别的地点，完整行程保留');
+    legend.innerHTML = `<div class="map-filter-items"><button type="button" class="map-filter-button" data-category-filter="all">全部</button>${Object.entries(markerCategories).map(([category, info]) => `<button type="button" class="map-filter-button" data-category-filter="${category}" title="筛选${info.label}，可多选">${categoryIcon(category)}<span>${info.label}</span></button>`).join('')}</div>`;
+    legend.addEventListener('click', event => {
+      const button = event.target.closest('[data-category-filter]');
+      if (!button) return;
+      const category = button.dataset.categoryFilter;
+      if (category === 'all') state.filters = [];
+      else if (validCategory(category)) {
+        state.filters = state.filters.includes(category) ? state.filters.filter(value => value !== category) : [...state.filters, category];
+        if (state.filters.length === Object.keys(markerCategories).length) state.filters = [];
+      }
+      updateHash(); updateFilterUi(); drawMap();
+    });
     panel.appendChild(legend);
+    updateFilterUi();
+  }
+  function updateFilterUi() {
+    const legend = mapNode?.closest('.map-panel')?.querySelector('.map-category-legend');
+    legend?.querySelectorAll('[data-category-filter]').forEach(button => {
+      const category = button.dataset.categoryFilter;
+      const active = category === 'all' ? !state.filters.length : state.filters.includes(category);
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
   }
   function popupHtml(day, stop, number) {
     const url = placeUrl(stop);
     return `<div class="trip-popup"><p class="popup-date">${esc(day.label || day.id)} · ${number ? `${number}号地点` : esc(typeText[stop.type] || '地点')}</p><strong>${esc(stop.name)}</strong><p>${esc(stop.time || '时间待确认')}</p>${statusBadge(stop)}${stop.participants ? `<p>${esc(stop.participants)}</p>` : ''}${stop.description ? `<p>${esc(stop.description)}</p>` : ''}${url ? link(stop.mapLabel || 'Google地图', url, true) : ''}</div>`;
   }
-  function drawMap() {
-    if (!mapState.ready) { mapMessage('底图暂未载入；下方行程与Google导航仍可使用。', true); return; }
-    clearMap();
-    const selected = visibleDays(), bounds = [], seen = new Map();
-    let unknown = 0, optionalCount = 0;
+  function placeIdentity(stop) {
+    if (stop.placeId) return `place:${String(stop.placeId)}`;
+    const name = String(stop.query || stop.address || stop.name).normalize('NFKC').replace(/\s+/g, ' ').trim().toLowerCase();
+    return `exact:${stop.lat.toFixed(6)}|${stop.lng.toFixed(6)}|${name}`;
+  }
+  function mapGroups(selected) {
+    const groups = new Map();
+    let unknown = 0;
     for (const day of selected) {
       let mainNumber = 0;
       for (const stop of day.stops || []) {
         if (statusOf(stop) === 'cancelled') continue;
-        const optional = statusOf(stop) === 'optional';
+        const optional = statusOf(stop) === 'optional', categories = categoriesOf(stop);
         if (!optional) mainNumber += 1;
-        if (!validCoord(stop)) { unknown += 1; continue; }
-        if (optional) optionalCount += 1;
-        const key = `${stop.lat}|${stop.lng}|${stop.name}`;
-        if (!state.day && seen.has(key)) continue;
-        seen.set(key, true);
-        const category = markerCategory(stop), badge = optional ? '选' : state.day ? mainNumber : null;
-        const marker = window.L.marker([stop.lat, stop.lng], { icon: window.L.divIcon({ className: 'trip-pin-wrap', html: `<span class="trip-pin ${statusOf(stop)} trip-pin-type-${category}" data-marker-category="${category}">${categoryIcon(category)}${badge != null ? `<span class="trip-pin-index" aria-hidden="true">${badge}</span>` : ''}</span>`, iconSize: [36, 36], iconAnchor: [18, 18] }), title: `${day.label || day.id} · ${markerCategories[category].label} · ${stop.name} · ${statusLabel(stop)}${badge != null ? ` · ${optional ? '可选' : `${badge}号地点`}` : ''}` }).addTo(mapState.map).bindPopup(popupHtml(day, stop, state.day && !optional ? mainNumber : null));
-        marker.on('click', () => {
-          if (state.day !== day.id) { selectDay(day.id, false); focusStop(day.id, stop.id, false); }
-          else highlightStop(day, stop);
-        });
-        mapState.layers.push(marker); mapState.markers.set(`${day.id}|${stop.id}`, marker); bounds.push([stop.lat, stop.lng]);
+        if (!validCoord(stop)) { if (matchesFilters(categories)) unknown += 1; continue; }
+        const key = placeIdentity(stop);
+        if (!groups.has(key)) groups.set(key, { key, name: stop.placeName || stop.name, lat: stop.lat, lng: stop.lng, categories: new Set(), entries: [] });
+        const group = groups.get(key);
+        categories.forEach(category => group.categories.add(category));
+        group.entries.push({ day, stop, number: optional ? null : mainNumber, optional });
       }
-      if (state.day) {
+    }
+    return { groups: [...groups.values()], unknown };
+  }
+  function groupStatus(group) {
+    const statuses = group.entries.map(entry => statusOf(entry.stop));
+    if (statuses.includes('pending')) return 'pending';
+    if (statuses.every(status => status === 'optional')) return 'optional';
+    if (statuses.every(status => status === 'confirmed')) return 'confirmed';
+    return 'planned';
+  }
+  function groupBadge(group) {
+    if (!state.day) return group.entries.every(entry => entry.optional) ? '选' : null;
+    const numbers = [...new Set(group.entries.map(entry => entry.number).filter(Boolean))].sort((a, b) => a - b);
+    if (!numbers.length) return '选';
+    if (numbers.length === 1) return String(numbers[0]);
+    if (numbers.at(-1) - numbers[0] + 1 === numbers.length) return `${numbers[0]}–${numbers.at(-1)}`;
+    return numbers.length <= 3 ? numbers.join('·') : `${numbers[0]}…${numbers.at(-1)}`;
+  }
+  function groupPopupHtml(group) {
+    const categories = Object.keys(markerCategories).filter(category => group.categories.has(category));
+    const first = group.entries[0].stop;
+    return `<div class="trip-popup trip-popup-group"><strong>${esc(group.name)}</strong><p class="popup-categories">${categories.map(category => `<span>${categoryIcon(category)}${esc(markerCategories[category].label)}</span>`).join('')}</p><p class="small-note">${group.entries.length}项安排 · 各项预订状态分别列出</p><div class="trip-popup-entries">${group.entries.map(({ day, stop, number, optional }) => `<article class="trip-popup-entry"><p class="popup-date">${esc(day.label || day.id)} · ${optional ? '可选' : `${number}号安排`}</p><strong>${esc(stop.name)}</strong><p>${esc(stop.time || '时间待确认')}</p>${statusBadge(stop)}${stop.description ? `<p>${paragraph(stop.description)}</p>` : ''}<button type="button" class="trip-link" data-popup-day="${esc(day.id)}" data-popup-stop="${esc(stop.id)}">查看当天安排</button></article>`).join('')}</div>${placeUrl(first) ? link(first.mapLabel || 'Google地图', placeUrl(first), true) : ''}</div>`;
+  }
+  function closePlacePopup() {
+    const panel = mapNode?.closest('.map-panel');
+    panel?.querySelector('.map-place-popup')?.remove();
+    panel?.classList.remove('popup-open');
+  }
+  function showPlacePopup(group) {
+    if (!group) return;
+    closePlacePopup();
+    const panel = mapNode.closest('.map-panel'), popup = document.createElement('section');
+    popup.className = 'map-place-popup';
+    popup.setAttribute('role', 'region');
+    popup.setAttribute('aria-label', `${group.name}的行程安排`);
+    popup.innerHTML = `<button type="button" class="map-popup-close" data-map-popup-close aria-label="关闭地点详情">×</button><div class="map-place-popup-body">${groupPopupHtml(group)}</div>`;
+    panel.appendChild(popup); panel.classList.add('popup-open');
+  }
+  function drawMap() {
+    if (!mapState.ready) { mapMessage('底图暂未载入；下方行程与Google导航仍可使用。', true); return; }
+    clearMap();
+    const selected = visibleDays(), bounds = [];
+    const { groups, unknown } = mapGroups(selected);
+    const shown = groups.filter(group => matchesFilters([...group.categories]));
+    const optionalCount = shown.filter(group => group.entries.some(entry => entry.optional)).length;
+    for (const group of shown) {
+      const categories = Object.keys(markerCategories).filter(category => group.categories.has(category));
+      const badge = groupBadge(group), status = groupStatus(group), width = categories.length <= 3 ? 36 + 20 * (categories.length - 1) : 56, height = categories.length === 4 ? 52 : 36;
+      const marker = window.L.marker([group.lat, group.lng], { riseOnHover: true, riseOffset: 1000, icon: window.L.divIcon({ className: 'trip-pin-wrap', html: `<span class="trip-pin ${status}${categories.length > 1 ? ' trip-pin-multi' : ''}" style="width:${width}px;height:${height}px" data-marker-categories="${esc(categories.join(' '))}" data-place-key="${esc(group.key)}" data-entry-count="${group.entries.length}"><span class="trip-pin-icons">${categories.map(categoryIcon).join('')}</span>${badge != null ? `<span class="trip-pin-index" aria-hidden="true">${esc(badge)}</span>` : ''}</span>`, iconSize: [width, height], iconAnchor: [width / 2, height / 2] }), title: `${group.name} · ${categories.map(category => markerCategories[category].label).join('／')} · ${group.entries.length}项安排${state.day && badge ? ` · ${badge === '选' ? '可选' : `${badge}号`}` : ''}` }).addTo(mapState.map);
+      const openGroup = () => { showPlacePopup(group); if (state.day && group.entries.length === 1) highlightStop(group.entries[0].day, group.entries[0].stop); };
+      marker.on('click', openGroup);
+      marker.getElement()?.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); openGroup(); } });
+      mapState.layers.push(marker);
+      group.entries.forEach(({ day, stop }) => { mapState.markers.set(`${day.id}|${stop.id}`, marker); mapState.groups.set(`${day.id}|${stop.id}`, group); });
+      bounds.push([group.lat, group.lng]);
+    }
+    if (state.day && !state.filters.length) {
+      for (const day of selected) {
         for (const leg of day.transport || []) {
           if (['optional', 'cancelled'].includes(statusOf(leg))) continue;
           const from = legEndpoint(day, leg, 'from'), to = legEndpoint(day, leg, 'to');
           if (!validCoord(from) || !validCoord(to) || [from, to].some(s => ['optional', 'cancelled'].includes(statusOf(s)))) continue;
+          if (from.lat === to.lat && from.lng === to.lng) continue;
           // Draw each transport leg separately: split-traveller days never become one airport-to-hotel route.
           const line = window.L.polyline([[from.lat, from.lng], [to.lat, to.lng]], { color: '#3f7870', weight: 2, opacity: 0.65, dashArray: '5 7' }).addTo(mapState.map).bindTooltip(`${esc(leg.participants || to.participants || '')} ${esc(leg.mode || '交通')} · ${esc(leg.duration || '用时待确认')}（起终点示意）`);
           mapState.layers.push(line); bounds.push([from.lat, from.lng], [to.lat, to.lng]);
         }
       }
     }
-    if (bounds.length) mapState.map.fitBounds(bounds, { padding: [38, 38], maxZoom: state.day ? 14 : 12 });
-    const parts = [`${seen.size}个地点`, optionalCount ? `${optionalCount}个可选` : '', unknown ? `${unknown}项未定位，仍保留在行程` : '', state.day ? '虚线仅示交通起终点' : '点选地点查看当天安排'].filter(Boolean);
+    if (bounds.length) mapState.map.fitBounds(bounds, { paddingTopLeft: [52, 32], paddingBottomRight: [52, 88], maxZoom: state.day ? 14 : 12 });
+    const filterText = state.filters.map(category => markerCategories[category].label).join('、');
+    const parts = [state.filters.length ? `显示${shown.length}/${groups.length}个地点 · 筛选：${filterText}` : `${shown.length}个地点`, optionalCount ? `${optionalCount}处含可选安排` : '', unknown ? `${unknown}项未定位，仍保留在行程` : '', !shown.length ? '此筛选暂无可定位地点，可选“全部”' : state.filters.length ? '完整行程保留；同点展示全部用途' : state.day ? '虚线仅示交通起终点' : '点选查看这处地点的全部安排'].filter(Boolean);
     mapMessage(mapState.tileFailed && !mapState.tileLoaded ? `底图加载异常；${parts.join(' · ')}` : parts.join(' · '), mapState.tileFailed && !mapState.tileLoaded);
   }
   function initMap() {
@@ -243,14 +331,25 @@
     const day = days.find(d => d.id === dayId), stop = day?.stops?.find(s => s.id === stopId);
     if (!validCoord(stop) || !mapState.ready) { mapMessage('该地点暂时不能在底图定位，可使用地点卡里的Google地图。', true); return; }
     if (state.day !== day.id) selectDay(day.id, false);
+    if (!mapState.markers.has(`${day.id}|${stop.id}`)) {
+      state.filters = []; updateHash(true); updateFilterUi(); drawMap();
+    }
     setMapCollapsed(false); highlightStop(day, stop);
     mapState.map.setView([stop.lat, stop.lng], 15);
-    mapState.markers.get(`${day.id}|${stop.id}`)?.openPopup();
+    showPlacePopup(mapState.groups.get(`${day.id}|${stop.id}`));
     if (scrollMap && window.matchMedia('(max-width: 800px)').matches) mapNode.closest('.map-panel')?.scrollIntoView({ block: 'start', behavior: 'smooth' });
   }
   sectionNav?.addEventListener('click', event => { const button = event.target.closest('[data-section]'); if (!button) return; state.section = button.dataset.section; state.day = null; updateHash(); render(true); });
   dayTabs?.addEventListener('click', event => { const button = event.target.closest('button'); if (!button) return; if (button.dataset.overview) { state.day = null; updateHash(); render(true); } else selectDay(button.dataset.day); });
   content.addEventListener('click', event => { const button = event.target.closest('[data-action]'); if (!button) return; if (button.dataset.action === 'day') selectDay(button.dataset.day); else if (button.dataset.action === 'focus-stop') focusStop(button.dataset.day, button.dataset.stop); });
+  mapNode?.closest('.map-panel')?.addEventListener('click', event => {
+    if (event.target.closest('[data-map-popup-close]')) { closePlacePopup(); return; }
+    const button = event.target.closest('[data-popup-day]');
+    if (!button) return;
+    const day = days.find(item => item.id === button.dataset.popupDay), stop = day?.stops?.find(item => item.id === button.dataset.popupStop);
+    if (stop) focusStop(day.id, stop.id, false);
+  });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closePlacePopup(); });
   mapToggle?.addEventListener('click', () => setMapCollapsed(!state.collapsed));
   mapToggle?.setAttribute('aria-expanded', 'true');
   locateButton?.addEventListener('click', () => {

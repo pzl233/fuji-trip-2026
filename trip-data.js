@@ -400,7 +400,12 @@ window.TRIP_DATA = {
           "query": "成田国際空港",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E6%88%90%E7%94%B0%E5%9B%BD%E9%9A%9B%E7%A9%BA%E6%B8%AF",
           "sourceUrl": "https://www.narita-airport.jp/ja/access/train/",
-          "details": "地图点仅代表成田机场区域，不代表已确认抵达航站楼；入境、取行李和丰田柜台按最终航班确认。"
+          "details": "地图点仅代表成田机场区域，不代表已确认抵达航站楼；入境、取行李和丰田柜台按最终航班确认。",
+          "categories": [
+            "transport"
+          ],
+          "placeId": "nrt",
+          "placeName": "成田机场 NRT（机场站区示意）"
         },
         {
           "id": "d1-e1",
@@ -415,7 +420,12 @@ window.TRIP_DATA = {
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%83%88%E3%83%A8%E3%82%BF%E3%83%AC%E3%83%B3%E3%82%BF%E3%82%AB%E3%83%BC%20%E6%88%90%E7%94%B0%E7%A9%BA%E6%B8%AF%E5%BA%97%20%E6%88%90%E7%94%B0%E5%B8%82%E5%8F%96%E9%A6%99530-13",
           "sourceUrl": "https://rent.toyota.co.jp/shop/route/1_0020.html",
           "cost": "全程¥84,942 · 到店付款",
-          "details": "已确认C3自动挡禁烟、雪胎、免責与NOC免除；ETC卡待确认。成田门店0476-32-1020，未另行约定时超过预约1小时可能取消，先联系晚到。"
+          "details": "已确认C3自动挡禁烟、雪胎、免責与NOC免除；ETC卡待确认。成田门店0476-32-1020，未另行约定时超过预约1小时可能取消，先联系晚到。",
+          "categories": [
+            "transport"
+          ],
+          "placeId": "rentalNrt",
+          "placeName": "丰田租车 · 成田空港店"
         },
         {
           "id": "d1-e2",
@@ -428,7 +438,12 @@ window.TRIP_DATA = {
           "lng": 138.9173596,
           "query": "Fuji Speedway Hotel 645 Omika Oyama Shizuoka Japan",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Fuji%20Speedway%20Hotel",
-          "sourceUrl": "https://www.hyatt.com/unbound-collection/en-US/fswub-fuji-speedway-hotel"
+          "sourceUrl": "https://www.hyatt.com/unbound-collection/en-US/fswub-fuji-speedway-hotel",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "speedway",
+          "placeName": "Fuji Speedway Hotel"
         }
       ],
       "transport": [
@@ -493,7 +508,14 @@ window.TRIP_DATA = {
           "lat": 35.3671972,
           "lng": 138.9173596,
           "query": "Fuji Speedway Hotel 645 Omika Oyama Shizuoka Japan",
-          "sourceUrl": "https://www.hyatt.com/unbound-collection/en-US/fswub-fuji-speedway-hotel"
+          "sourceUrl": "https://www.hyatt.com/unbound-collection/en-US/fswub-fuji-speedway-hotel",
+          "categories": [
+            "food",
+            "spot",
+            "hotel"
+          ],
+          "placeId": "speedway",
+          "placeName": "Fuji Speedway Hotel"
         },
         {
           "id": "d2-e1",
@@ -506,7 +528,13 @@ window.TRIP_DATA = {
           "lng": 138.9620686,
           "query": "御殿場プレミアム・アウトレット 静岡県御殿場市深沢1312",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E5%BE%A1%E6%AE%BF%E5%A0%B4%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%BB%E3%82%A2%E3%82%A6%E3%83%88%E3%83%AC%E3%83%83%E3%83%88%20%E9%9D%99%E5%B2%A1%E7%9C%8C%E5%BE%A1%E6%AE%BF%E5%A0%B4%E5%B8%82%E6%B7%B1%E6%B2%A21312",
-          "sourceUrl": "https://www.premiumoutlets.co.jp/en/gotemba/"
+          "sourceUrl": "https://www.premiumoutlets.co.jp/en/gotemba/",
+          "categories": [
+            "food",
+            "spot"
+          ],
+          "placeId": "outlets",
+          "placeName": "御殿场 Premium Outlets · 御殿場プレミアム・アウトレット"
         },
         {
           "id": "d2-e2",
@@ -519,7 +547,12 @@ window.TRIP_DATA = {
           "lng": 138.7751207,
           "query": "富士グランヴィラ TOKI 新倉2855-1",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Fuji%20Grand%20Villa%20TOKI",
-          "sourceUrl": "https://fujigran.toki223.com/access/"
+          "sourceUrl": "https://fujigran.toki223.com/access/",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "toki",
+          "placeName": "Fuji Grand Villa – TOKI"
         },
         {
           "id": "d2-e3",
@@ -529,7 +562,11 @@ window.TRIP_DATA = {
           "description": "买11/27晚餐与11/29早餐食材；超市和采购时刻待定",
           "type": "food",
           "lat": null,
-          "lng": null
+          "lng": null,
+          "categories": [
+            "food"
+          ],
+          "placeId": "unlocated:tokiDinnerShopping"
         }
       ],
       "transport": [
@@ -597,7 +634,12 @@ window.TRIP_DATA = {
           "lat": 35.4895705,
           "lng": 138.7751207,
           "query": "富士グランヴィラ TOKI 新倉2855-1",
-          "sourceUrl": "https://fujigran.toki223.com/access/"
+          "sourceUrl": "https://fujigran.toki223.com/access/",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "toki",
+          "placeName": "Fuji Grand Villa – TOKI"
         },
         {
           "id": "d3-e1",
@@ -610,7 +652,12 @@ window.TRIP_DATA = {
           "lng": 138.90083,
           "query": "平野の浜 山梨県南都留郡山中湖村平野",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E5%B9%B3%E9%87%8E%E3%81%AE%E6%B5%9C%20%E5%B1%B1%E6%A2%A8%E7%9C%8C%E5%8D%97%E9%83%BD%E7%95%99%E9%83%A1%E5%B1%B1%E4%B8%AD%E6%B9%96%E6%9D%91%E5%B9%B3%E9%87%8E",
-          "sourceUrl": "https://map.yahoo.co.jp/v3/place/BwZrp1nV82-"
+          "sourceUrl": "https://map.yahoo.co.jp/v3/place/BwZrp1nV82-",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "hiranoHama",
+          "placeName": "山中湖平野滨（平野の浜）"
         },
         {
           "id": "d3-e2",
@@ -623,7 +670,12 @@ window.TRIP_DATA = {
           "lng": 138.901971,
           "query": "山中湖交流プラザ きらら 山梨県南都留郡山中湖村平野479-2",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E5%B1%B1%E4%B8%AD%E6%B9%96%E4%BA%A4%E6%B5%81%E3%83%97%E3%83%A9%E3%82%B6%20%E3%81%8D%E3%82%89%E3%82%89%20%E5%B1%B1%E6%A2%A8%E7%9C%8C%E5%8D%97%E9%83%BD%E7%95%99%E9%83%A1%E5%B1%B1%E4%B8%AD%E6%B9%96%E6%9D%91%E5%B9%B3%E9%87%8E479-2",
-          "sourceUrl": "https://www.kirarayamanakako.jp/kirara/access.php"
+          "sourceUrl": "https://www.kirarayamanakako.jp/kirara/access.php",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "kirara",
+          "placeName": "山中湖交流广场 Kirara"
         },
         {
           "id": "d3-e3",
@@ -637,7 +689,11 @@ window.TRIP_DATA = {
           "query": "山中湖 白鳥浜",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E5%B1%B1%E4%B8%AD%E6%B9%96%20%E7%99%BD%E9%B3%A5%E6%B5%9C",
           "mapLabel": "候选地点搜索",
-          "details": "准确机位/店址未核实，仅按名称查询，不代表已确定地图入口。"
+          "details": "准确机位/店址未核实，仅按名称查询，不代表已确定地图入口。",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "unlocated:swanBeach"
         },
         {
           "id": "d3-e4",
@@ -650,7 +706,12 @@ window.TRIP_DATA = {
           "lng": 138.87118,
           "query": "長池親水公園 山中湖",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E5%B1%B1%E4%B8%AD%E6%B9%96%20%E9%95%B7%E6%B1%A0%E8%A6%AA%E6%B0%B4%E5%85%AC%E5%9C%92",
-          "sourceUrl": "https://www.yamanashi-kankou.jp/viewpoint/pub/pvp038.html"
+          "sourceUrl": "https://www.yamanashi-kankou.jp/viewpoint/pub/pvp038.html",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "nagaike",
+          "placeName": "山中湖 · 长池亲水公园"
         },
         {
           "id": "d3-e5",
@@ -664,7 +725,11 @@ window.TRIP_DATA = {
           "query": "ローソン 河口湖駅前店",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%83%AD%E3%83%BC%E3%82%BD%E3%83%B3%20%E6%B2%B3%E5%8F%A3%E6%B9%96%E9%A7%85%E5%89%8D%E5%BA%97",
           "mapLabel": "候选地点搜索",
-          "details": "准确机位/店址未核实，仅按名称查询，不代表已确定地图入口。"
+          "details": "准确机位/店址未核实，仅按名称查询，不代表已确定地图入口。",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "unlocated:lawsonSideLane"
         },
         {
           "id": "d3-e6",
@@ -677,7 +742,12 @@ window.TRIP_DATA = {
           "lng": 138.7461483,
           "query": "大石公園 富士河口湖町",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E7%9F%B3%E5%85%AC%E5%9C%92%20%E5%AF%8C%E5%A3%AB%E6%B2%B3%E5%8F%A3%E6%B9%96%E7%94%BA",
-          "sourceUrl": "https://www.yamanashi-kankou.jp/kankou/spot/p_8334.html"
+          "sourceUrl": "https://www.yamanashi-kankou.jp/kankou/spot/p_8334.html",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "oishi",
+          "placeName": "大石公园"
         },
         {
           "id": "d3-e7",
@@ -690,7 +760,12 @@ window.TRIP_DATA = {
           "lng": 138.767591,
           "query": "産屋ヶ崎駐車場 山梨県南都留郡富士河口湖町浅川10付近",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E7%94%A3%E5%B1%8B%E3%83%B6%E5%B4%8E%E9%A7%90%E8%BB%8A%E5%A0%B4%20%E5%B1%B1%E6%A2%A8%E7%9C%8C%E5%8D%97%E9%83%BD%E7%95%99%E9%83%A1%E5%AF%8C%E5%A3%AB%E6%B2%B3%E5%8F%A3%E6%B9%96%E7%94%BA%E6%B5%85%E5%B7%9D10%E4%BB%98%E8%BF%91",
-          "sourceUrl": "https://www.fuji-net.co.jp/report/cat-tourism-event/6262/"
+          "sourceUrl": "https://www.fuji-net.co.jp/report/cat-tourism-event/6262/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "ubuyagasakiParking",
+          "placeName": "産屋ヶ崎停车场"
         },
         {
           "id": "d3-e8",
@@ -698,12 +773,17 @@ window.TRIP_DATA = {
           "time": "午餐",
           "status": "optional",
           "description": "未预订；与甲州家二选一",
-          "type": "spot",
+          "type": "food",
           "lat": 35.4905624,
           "lng": 138.7608948,
           "query": "ほうとう蔵 歩成 河口湖店 山梨県南都留郡富士河口湖町船津6931",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%81%BB%E3%81%86%E3%81%A8%E3%81%86%E8%94%B5%20%E6%AD%A9%E6%88%90%20%E6%B2%B3%E5%8F%A3%E6%B9%96%E5%BA%97%20%E5%B1%B1%E6%A2%A8%E7%9C%8C%E5%8D%97%E9%83%BD%E7%95%99%E9%83%A1%E5%AF%8C%E5%A3%AB%E6%B2%B3%E5%8F%A3%E6%B9%96%E7%94%BA%E8%88%B9%E6%B4%A56931",
-          "sourceUrl": "https://www.yamanashi-kankou.jp/kankou/eat/funari_kawaguchiko.html"
+          "sourceUrl": "https://www.yamanashi-kankou.jp/kankou/eat/funari_kawaguchiko.html",
+          "categories": [
+            "food"
+          ],
+          "placeId": "funari",
+          "placeName": "ほうとう蔵 歩成 河口湖店"
         },
         {
           "id": "d3-e9",
@@ -711,12 +791,17 @@ window.TRIP_DATA = {
           "time": "午餐",
           "status": "optional",
           "description": "午餐备选、未预订；按当天湖区选择。官网现列无专用停车场，停车另安排。",
-          "type": "spot",
+          "type": "food",
           "lat": 35.5007248,
           "lng": 138.7685242,
           "query": "牛かつ専門店 甲州家 山梨県南都留郡富士河口湖町船津3753",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E7%89%9B%E3%81%8B%E3%81%A4%E5%B0%82%E9%96%80%E5%BA%97%20%E7%94%B2%E5%B7%9E%E5%AE%B6%20%E5%B1%B1%E6%A2%A8%E7%9C%8C%E5%8D%97%E9%83%BD%E7%95%99%E9%83%A1%E5%AF%8C%E5%A3%AB%E6%B2%B3%E5%8F%A3%E6%B9%96%E7%94%BA%E8%88%B9%E6%B4%A53753",
-          "sourceUrl": "https://koushuya.com/"
+          "sourceUrl": "https://koushuya.com/",
+          "categories": [
+            "food"
+          ],
+          "placeId": "koushuya",
+          "placeName": "牛かつ専門店 甲州家（河口湖）"
         },
         {
           "id": "d3-e10",
@@ -728,7 +813,13 @@ window.TRIP_DATA = {
           "lat": 35.4895705,
           "lng": 138.7751207,
           "query": "富士グランヴィラ TOKI 新倉2855-1",
-          "sourceUrl": "https://fujigran.toki223.com/access/"
+          "sourceUrl": "https://fujigran.toki223.com/access/",
+          "categories": [
+            "spot",
+            "hotel"
+          ],
+          "placeId": "toki",
+          "placeName": "Fuji Grand Villa – TOKI"
         }
       ],
       "transport": [
@@ -794,7 +885,13 @@ window.TRIP_DATA = {
           "lat": 35.4895705,
           "lng": 138.7751207,
           "query": "富士グランヴィラ TOKI 新倉2855-1",
-          "sourceUrl": "https://fujigran.toki223.com/access/"
+          "sourceUrl": "https://fujigran.toki223.com/access/",
+          "categories": [
+            "food",
+            "hotel"
+          ],
+          "placeId": "toki",
+          "placeName": "Fuji Grand Villa – TOKI"
         },
         {
           "id": "d4-e1",
@@ -806,7 +903,12 @@ window.TRIP_DATA = {
           "lat": 35.4895705,
           "lng": 138.7751207,
           "query": "富士グランヴィラ TOKI 新倉2855-1",
-          "sourceUrl": "https://fujigran.toki223.com/access/"
+          "sourceUrl": "https://fujigran.toki223.com/access/",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "toki",
+          "placeName": "Fuji Grand Villa – TOKI"
         },
         {
           "id": "d4-e2",
@@ -819,7 +921,13 @@ window.TRIP_DATA = {
           "lng": 138.8680573,
           "query": "THE PARK 山中湖店 山梨県南都留郡山中湖村平野3752",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=THE%20PARK%20%E5%B1%B1%E4%B8%AD%E6%B9%96%E5%BA%97%20%E5%B1%B1%E6%A2%A8%E7%9C%8C%E5%8D%97%E9%83%BD%E7%95%99%E9%83%A1%E5%B1%B1%E4%B8%AD%E6%B9%96%E6%9D%91%E5%B9%B3%E9%87%8E3752",
-          "sourceUrl": "https://www.theparkstyle.com/"
+          "sourceUrl": "https://www.theparkstyle.com/",
+          "categories": [
+            "food",
+            "spot"
+          ],
+          "placeId": "thePark",
+          "placeName": "THE PARK 山中湖店"
         },
         {
           "id": "d4-e3",
@@ -830,7 +938,11 @@ window.TRIP_DATA = {
           "type": "spot",
           "lat": null,
           "lng": null,
-          "statusLabel": "早餐备选 · 地点待确认"
+          "statusLabel": "早餐备选 · 地点待确认",
+          "categories": [
+            "food"
+          ],
+          "placeId": "unlocated:yamanakako20"
         },
         {
           "id": "d4-e4",
@@ -843,7 +955,12 @@ window.TRIP_DATA = {
           "lng": 139.0253574,
           "query": "箱根神社 神奈川県足柄下郡箱根町元箱根80-1",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E7%AE%B1%E6%A0%B9%E7%A5%9E%E7%A4%BE%20%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E8%B6%B3%E6%9F%84%E4%B8%8B%E9%83%A1%E7%AE%B1%E6%A0%B9%E7%94%BA%E5%85%83%E7%AE%B1%E6%A0%B980-1",
-          "sourceUrl": "https://hakonejinja.or.jp/access/"
+          "sourceUrl": "https://hakonejinja.or.jp/access/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "hakoneShrine",
+          "placeName": "箱根神社"
         },
         {
           "id": "d4-e5",
@@ -856,7 +973,12 @@ window.TRIP_DATA = {
           "lng": 139.030531,
           "query": "芦ノ湖 元箱根港 湖畔",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E8%8A%A6%E3%83%8E%E6%B9%96%20%E5%85%83%E7%AE%B1%E6%A0%B9%E6%B8%AF%20%E6%B9%96%E7%95%94",
-          "sourceUrl": "https://www.hakonenavi.jp/area/motohakone/"
+          "sourceUrl": "https://www.hakonenavi.jp/area/motohakone/",
+          "categories": [
+            "food"
+          ],
+          "placeId": "ashinokoMotohakone",
+          "placeName": "芦之湖·元箱根湖畔"
         },
         {
           "id": "d4-e6",
@@ -869,7 +991,12 @@ window.TRIP_DATA = {
           "lng": 139.030531,
           "query": "芦ノ湖 元箱根港 湖畔",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E8%8A%A6%E3%83%8E%E6%B9%96%20%E5%85%83%E7%AE%B1%E6%A0%B9%E6%B8%AF%20%E6%B9%96%E7%95%94",
-          "sourceUrl": "https://www.hakonenavi.jp/area/motohakone/"
+          "sourceUrl": "https://www.hakonenavi.jp/area/motohakone/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "ashinokoMotohakone",
+          "placeName": "芦之湖·元箱根湖畔"
         },
         {
           "id": "d4-e7",
@@ -882,7 +1009,12 @@ window.TRIP_DATA = {
           "lng": 139.030531,
           "query": "芦ノ湖 元箱根港 湖畔",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E8%8A%A6%E3%83%8E%E6%B9%96%20%E5%85%83%E7%AE%B1%E6%A0%B9%E6%B8%AF%20%E6%B9%96%E7%95%94",
-          "sourceUrl": "https://www.hakonenavi.jp/area/motohakone/"
+          "sourceUrl": "https://www.hakonenavi.jp/area/motohakone/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "ashinokoMotohakone",
+          "placeName": "芦之湖·元箱根湖畔"
         },
         {
           "id": "d4-e8",
@@ -896,7 +1028,12 @@ window.TRIP_DATA = {
           "query": "箱根美術館 神奈川県足柄下郡箱根町強羅1300",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E7%AE%B1%E6%A0%B9%E7%BE%8E%E8%A1%93%E9%A4%A8%20%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E8%B6%B3%E6%9F%84%E4%B8%8B%E9%83%A1%E7%AE%B1%E6%A0%B9%E7%94%BA%E5%BC%B7%E7%BE%851300",
           "mapLabel": "查看候选地点",
-          "sourceUrl": "https://moaart.or.jp/hakone/access/"
+          "sourceUrl": "https://moaart.or.jp/hakone/access/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "hakoneMuseum",
+          "placeName": "箱根美术馆（强罗）"
         },
         {
           "id": "d4-e9",
@@ -909,7 +1046,14 @@ window.TRIP_DATA = {
           "lng": 139.0436811,
           "query": "THE GLAMPING 箱根十国峠 熱海市伊豆山1146-6",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=THE%20GLAMPING%20%E7%AE%B1%E6%A0%B9%E5%8D%81%E5%9B%BD%E5%B3%A0%20%E5%8F%97%E4%BB%98%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%20%E7%86%B1%E6%B5%B7%E5%B8%82%E4%BC%8A%E8%B1%86%E5%B1%B11146-6",
-          "sourceUrl": "https://www.jukkoku-cable.jp/glamping/access/index.html"
+          "sourceUrl": "https://www.jukkoku-cable.jp/glamping/access/index.html",
+          "categories": [
+            "food",
+            "spot",
+            "hotel"
+          ],
+          "placeId": "jukkoku",
+          "placeName": "THE GLAMPING 箱根十国峠"
         }
       ],
       "transport": [
@@ -1008,7 +1152,14 @@ window.TRIP_DATA = {
           "lat": 35.1250674,
           "lng": 139.0436811,
           "query": "THE GLAMPING 箱根十国峠 熱海市伊豆山1146-6",
-          "sourceUrl": "https://www.jukkoku-cable.jp/glamping/access/index.html"
+          "sourceUrl": "https://www.jukkoku-cable.jp/glamping/access/index.html",
+          "categories": [
+            "food",
+            "spot",
+            "hotel"
+          ],
+          "placeId": "jukkoku",
+          "placeName": "THE GLAMPING 箱根十国峠"
         },
         {
           "id": "d5-e1",
@@ -1021,7 +1172,12 @@ window.TRIP_DATA = {
           "lng": 139.059087,
           "query": "熱海梅園 静岡県熱海市梅園町8-11",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E7%86%B1%E6%B5%B7%E6%A2%85%E5%9C%92%20%E9%9D%99%E5%B2%A1%E7%9C%8C%E7%86%B1%E6%B5%B7%E5%B8%82%E6%A2%85%E5%9C%92%E7%94%BA8-11",
-          "sourceUrl": "https://www.city.atami.lg.jp/kanko/kankoguide/1001799.html"
+          "sourceUrl": "https://www.city.atami.lg.jp/kanko/kankoguide/1001799.html",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "atamiBaien",
+          "placeName": "热海梅园"
         },
         {
           "id": "d5-e2",
@@ -1034,7 +1190,12 @@ window.TRIP_DATA = {
           "lng": 139.0678532,
           "query": "来宮神社 静岡県熱海市西山町43-1",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E6%9D%A5%E5%AE%AE%E7%A5%9E%E7%A4%BE%20%E9%9D%99%E5%B2%A1%E7%9C%8C%E7%86%B1%E6%B5%B7%E5%B8%82%E8%A5%BF%E5%B1%B1%E7%94%BA43-1",
-          "sourceUrl": "https://kinomiya.or.jp/"
+          "sourceUrl": "https://kinomiya.or.jp/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "kinomiya",
+          "placeName": "来宫神社（热海）"
         },
         {
           "id": "d5-e3",
@@ -1047,7 +1208,11 @@ window.TRIP_DATA = {
           "lng": null,
           "query": "熱海",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E7%86%B1%E6%B5%B7",
-          "mapLabel": "查看热海区域"
+          "mapLabel": "查看热海区域",
+          "categories": [
+            "food"
+          ],
+          "placeId": "area:atamiLunch"
         },
         {
           "id": "d5-e4",
@@ -1060,7 +1225,13 @@ window.TRIP_DATA = {
           "lng": 139.1316376,
           "query": "ヒルトン小田原リゾート＆スパ 小田原市根府川583-1",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Hilton%20Odawara%20Resort%20%26%20Spa",
-          "sourceUrl": "https://www.city.odawara.kanagawa.jp/kanko/stay/hilton/"
+          "sourceUrl": "https://www.city.odawara.kanagawa.jp/kanko/stay/hilton/",
+          "categories": [
+            "spot",
+            "hotel"
+          ],
+          "placeId": "hilton",
+          "placeName": "Hilton Odawara Resort & Spa"
         },
         {
           "id": "d5-e5",
@@ -1073,7 +1244,13 @@ window.TRIP_DATA = {
           "lng": 139.075,
           "query": "熱海サンビーチ",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E7%86%B1%E6%B5%B7%E3%82%B5%E3%83%B3%E3%83%93%E3%83%BC%E3%83%81",
-          "sourceUrl": "https://www.ataminews.gr.jp/spot/119"
+          "sourceUrl": "https://www.ataminews.gr.jp/spot/119",
+          "categories": [
+            "food",
+            "spot"
+          ],
+          "placeId": "sunBeach",
+          "placeName": "热海海滨 · Sun Beach"
         },
         {
           "id": "d5-e6",
@@ -1086,7 +1263,12 @@ window.TRIP_DATA = {
           "lng": 139.075351,
           "query": "MOA美術館 静岡県熱海市桃山町26-2",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=MOA%E7%BE%8E%E8%A1%93%E9%A4%A8%20%E9%9D%99%E5%B2%A1%E7%9C%8C%E7%86%B1%E6%B5%B7%E5%B8%82%E6%A1%83%E5%B1%B1%E7%94%BA26-2",
-          "sourceUrl": "https://www.moaart.or.jp/"
+          "sourceUrl": "https://www.moaart.or.jp/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "moa",
+          "placeName": "MOA美术馆"
         },
         {
           "id": "d5-e7",
@@ -1098,7 +1280,12 @@ window.TRIP_DATA = {
           "lat": 35.2068022,
           "lng": 139.1316376,
           "query": "ヒルトン小田原リゾート＆スパ 小田原市根府川583-1",
-          "sourceUrl": "https://www.city.odawara.kanagawa.jp/kanko/stay/hilton/"
+          "sourceUrl": "https://www.city.odawara.kanagawa.jp/kanko/stay/hilton/",
+          "categories": [
+            "food"
+          ],
+          "placeId": "hilton",
+          "placeName": "Hilton Odawara Resort & Spa"
         }
       ],
       "transport": [
@@ -1180,7 +1367,12 @@ window.TRIP_DATA = {
           "lat": 35.2068022,
           "lng": 139.1316376,
           "query": "ヒルトン小田原リゾート＆スパ 小田原市根府川583-1",
-          "sourceUrl": "https://www.city.odawara.kanagawa.jp/kanko/stay/hilton/"
+          "sourceUrl": "https://www.city.odawara.kanagawa.jp/kanko/stay/hilton/",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "hilton",
+          "placeName": "Hilton Odawara Resort & Spa"
         },
         {
           "id": "d6-e1",
@@ -1192,7 +1384,12 @@ window.TRIP_DATA = {
           "lat": 35.2068022,
           "lng": 139.1316376,
           "query": "ヒルトン小田原リゾート＆スパ 小田原市根府川583-1",
-          "sourceUrl": "https://www.city.odawara.kanagawa.jp/kanko/stay/hilton/"
+          "sourceUrl": "https://www.city.odawara.kanagawa.jp/kanko/stay/hilton/",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "hilton",
+          "placeName": "Hilton Odawara Resort & Spa"
         },
         {
           "id": "d6-e2",
@@ -1205,7 +1402,12 @@ window.TRIP_DATA = {
           "lng": 139.76974884057,
           "query": "トヨタレンタカー 東京駅日本橋口店 丸の内1-8-1",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%83%88%E3%83%A8%E3%82%BF%E3%83%AC%E3%83%B3%E3%82%BF%E3%82%AB%E3%83%BC%20%E6%9D%B1%E4%BA%AC%E9%A7%85%E6%97%A5%E6%9C%AC%E6%A9%8B%E5%8F%A3%E5%BA%97",
-          "sourceUrl": "https://rent.toyota.co.jp/sp/shop/detail.aspx?eCode=01V&rCode=63601"
+          "sourceUrl": "https://rent.toyota.co.jp/sp/shop/detail.aspx?eCode=01V&rCode=63601",
+          "categories": [
+            "transport"
+          ],
+          "placeId": "rentalTokyo",
+          "placeName": "丰田租车 · 东京站日本桥口店"
         },
         {
           "id": "d6-e3",
@@ -1218,7 +1420,12 @@ window.TRIP_DATA = {
           "lng": 139.7408331,
           "query": "ANA InterContinental Tokyo 東京都港区赤坂1-12-33",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=ANA%20InterContinental%20Tokyo%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E8%B5%A4%E5%9D%821-12-33",
-          "sourceUrl": "https://anaintercontinental-tokyo.jp/location/"
+          "sourceUrl": "https://anaintercontinental-tokyo.jp/location/",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "ana",
+          "placeName": "ANA InterContinental Tokyo"
         }
       ],
       "transport": [
@@ -1302,7 +1509,11 @@ window.TRIP_DATA = {
           "type": "spot",
           "lat": null,
           "lng": null,
-          "statusLabel": "日期已确定 · 时刻/地址待确认"
+          "statusLabel": "日期已确定 · 时刻/地址待确认",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "unlocated:visaInterview"
         },
         {
           "id": "d7-e1",
@@ -1315,7 +1526,12 @@ window.TRIP_DATA = {
           "lng": null,
           "query": "六本木",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E5%85%AD%E6%9C%AC%E6%9C%A8",
-          "mapLabel": "查看六本木区域"
+          "mapLabel": "查看六本木区域",
+          "categories": [
+            "food",
+            "spot"
+          ],
+          "placeId": "area:roppongi"
         },
         {
           "id": "d7-e2",
@@ -1328,7 +1544,12 @@ window.TRIP_DATA = {
           "lng": 139.730875,
           "query": "東京ミッドタウン 東京都港区赤坂9-7-1",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E3%83%9F%E3%83%83%E3%83%89%E3%82%BF%E3%82%A6%E3%83%B3%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E8%B5%A4%E5%9D%829-7-1",
-          "sourceUrl": "https://www.tokyo-midtown.com/jp/facilities/hall/access/"
+          "sourceUrl": "https://www.tokyo-midtown.com/jp/facilities/hall/access/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "midtown",
+          "placeName": "Tokyo Midtown 六本木"
         }
       ],
       "transport": [
@@ -1418,7 +1639,11 @@ window.TRIP_DATA = {
           "lng": null,
           "query": "渋谷",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E6%B8%8B%E8%B0%B7",
-          "mapLabel": "查看涩谷区域"
+          "mapLabel": "查看涩谷区域",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "unlocated:hairSalon"
         },
         {
           "id": "d8-e1",
@@ -1428,7 +1653,11 @@ window.TRIP_DATA = {
           "description": "具体办公地点/时间待确认，不应默认Shibuya Stream或其他楼",
           "type": "spot",
           "lat": null,
-          "lng": null
+          "lng": null,
+          "categories": [
+            "spot"
+          ],
+          "placeId": "unlocated:googleOffice"
         },
         {
           "id": "d8-e2",
@@ -1441,7 +1670,12 @@ window.TRIP_DATA = {
           "lng": 139.7408331,
           "query": "ANA InterContinental Tokyo 東京都港区赤坂1-12-33",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=ANA%20InterContinental%20Tokyo%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E8%B5%A4%E5%9D%821-12-33",
-          "sourceUrl": "https://anaintercontinental-tokyo.jp/location/"
+          "sourceUrl": "https://anaintercontinental-tokyo.jp/location/",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "ana",
+          "placeName": "ANA InterContinental Tokyo"
         }
       ],
       "transport": [
@@ -1502,7 +1736,12 @@ window.TRIP_DATA = {
           "lng": 139.7408331,
           "query": "ANA InterContinental Tokyo 東京都港区赤坂1-12-33",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=ANA%20InterContinental%20Tokyo%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E8%B5%A4%E5%9D%821-12-33",
-          "sourceUrl": "https://anaintercontinental-tokyo.jp/location/"
+          "sourceUrl": "https://anaintercontinental-tokyo.jp/location/",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "ana",
+          "placeName": "ANA InterContinental Tokyo"
         },
         {
           "id": "d9-e1",
@@ -1520,7 +1759,12 @@ window.TRIP_DATA = {
           "cost": "Hayatoku-3，2位合计¥29,340；确认邮件列订单总额，实际扣款状态未另核对。",
           "details": "特大行李放置处座席（oversized baggage area seats），大件放座位后方。仅可搭乘指定班次，错过不能改坐自由席。请分别关联两人的乘车IC，或在订单Display QR-Ticket取得二维码；实际IC关联/二维码准备仍待核对。",
           "bookingUrl": "https://smart-ex.jp/en/",
-          "bookingLabel": "Smart EX订单／乘车准备"
+          "bookingLabel": "Smart EX订单／乘车准备",
+          "categories": [
+            "transport"
+          ],
+          "placeId": "shinagawa",
+          "placeName": "品川站（东海道新干线）"
         },
         {
           "id": "d9-e2",
@@ -1533,7 +1777,12 @@ window.TRIP_DATA = {
           "lng": 135.487277,
           "query": "RIHGA Royal Hotel Osaka 大阪市北区中之島5-3-68",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=RIHGA%20Royal%20Hotel%20Osaka%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E4%B8%AD%E4%B9%8B%E5%B3%B65-3-68",
-          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location"
+          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "rihga",
+          "placeName": "RIHGA Royal Hotel Osaka"
         }
       ],
       "transport": [
@@ -1634,7 +1883,12 @@ window.TRIP_DATA = {
           "lng": 135.487277,
           "query": "RIHGA Royal Hotel Osaka 大阪市北区中之島5-3-68",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=RIHGA%20Royal%20Hotel%20Osaka%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E4%B8%AD%E4%B9%8B%E5%B3%B65-3-68",
-          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location"
+          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "rihga",
+          "placeName": "RIHGA Royal Hotel Osaka"
         },
         {
           "id": "d10-e1",
@@ -1647,7 +1901,13 @@ window.TRIP_DATA = {
           "lng": 135.18956906160682,
           "query": "風見鶏の館 神戸市中央区北野町3-13-3",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E9%A2%A8%E8%A6%8B%E9%B6%8F%E3%81%AE%E9%A4%A8%20%E7%A5%9E%E6%88%B8%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%8C%97%E9%87%8E%E7%94%BA3-13-3",
-          "sourceUrl": "https://kobe-kazamidori.com/access/"
+          "sourceUrl": "https://kobe-kazamidori.com/access/",
+          "categories": [
+            "food",
+            "spot"
+          ],
+          "placeId": "kitano",
+          "placeName": "北野异人馆街（风见鸡馆周边）"
         },
         {
           "id": "d10-e2",
@@ -1664,7 +1924,12 @@ window.TRIP_DATA = {
           "address": "兵庫県神戸市中央区北長狭通1-9-3 レインボープラザ8F",
           "cost": "2位合计¥31,460（含10%服务费）· 到店付",
           "bookingUrl": "https://www.tablecheck.com/",
-          "bookingLabel": "预约平台"
+          "bookingLabel": "预约平台",
+          "categories": [
+            "food"
+          ],
+          "placeId": "setsugekka",
+          "placeName": "雪月花 本店"
         },
         {
           "id": "d10-e3",
@@ -1677,7 +1942,13 @@ window.TRIP_DATA = {
           "lng": 135.1912392,
           "query": "神戸布引ハーブ園",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E7%A5%9E%E6%88%B8%E5%B8%83%E5%BC%95%E3%83%8F%E3%83%BC%E3%83%96%E5%9C%92",
-          "sourceUrl": "https://www.kobeherb.com/infomation/hours_fare/"
+          "sourceUrl": "https://www.kobeherb.com/infomation/hours_fare/",
+          "categories": [
+            "spot",
+            "transport"
+          ],
+          "placeId": "herbGarden",
+          "placeName": "神户布引香草园"
         },
         {
           "id": "d10-e4",
@@ -1690,7 +1961,12 @@ window.TRIP_DATA = {
           "lng": 135.1937926,
           "query": "ハーブ園山麓駅 神戸布引ロープウェイ",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%83%8F%E3%83%BC%E3%83%96%E5%9C%92%E5%B1%B1%E9%BA%93%E9%A7%85%20%E7%A5%9E%E6%88%B8%E5%B8%83%E5%BC%95%E3%83%AD%E3%83%BC%E3%83%97%E3%82%A6%E3%82%A7%E3%82%A4",
-          "sourceUrl": "https://www.kobeherb.com/access/"
+          "sourceUrl": "https://www.kobeherb.com/access/",
+          "categories": [
+            "transport"
+          ],
+          "placeId": "herbBase",
+          "placeName": "布引缆车 山麓站"
         },
         {
           "id": "d10-e5",
@@ -1703,7 +1979,12 @@ window.TRIP_DATA = {
           "lng": 135.18866666666668,
           "query": "メリケンパーク 神戸",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%83%A1%E3%83%AA%E3%82%B1%E3%83%B3%E3%83%91%E3%83%BC%E3%82%AF%20%E7%A5%9E%E6%88%B8",
-          "sourceUrl": "https://www.feel-kobe.jp/facilities/0000000096/"
+          "sourceUrl": "https://www.feel-kobe.jp/facilities/0000000096/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "meriken",
+          "placeName": "美利坚公园"
         },
         {
           "id": "d10-e6",
@@ -1716,7 +1997,12 @@ window.TRIP_DATA = {
           "lng": 135.1851894,
           "query": "神戸ハーバーランドumie モザイク",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E7%A5%9E%E6%88%B8%E3%83%8F%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%83%B3%E3%83%89umie%20%E3%83%A2%E3%82%B6%E3%82%A4%E3%82%AF",
-          "sourceUrl": "https://harborland.co.jp/area_guide/umie/"
+          "sourceUrl": "https://harborland.co.jp/area_guide/umie/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "umieMosaic",
+          "placeName": "umie MOSAIC 海滨区域"
         },
         {
           "id": "d10-e7",
@@ -1729,7 +2015,12 @@ window.TRIP_DATA = {
           "lng": 135.487277,
           "query": "RIHGA Royal Hotel Osaka 大阪市北区中之島5-3-68",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=RIHGA%20Royal%20Hotel%20Osaka%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E4%B8%AD%E4%B9%8B%E5%B3%B65-3-68",
-          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location"
+          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "rihga",
+          "placeName": "RIHGA Royal Hotel Osaka"
         }
       ],
       "transport": [
@@ -1913,7 +2204,12 @@ window.TRIP_DATA = {
           "lng": 135.487277,
           "query": "RIHGA Royal Hotel Osaka 大阪市北区中之島5-3-68",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=RIHGA%20Royal%20Hotel%20Osaka%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E4%B8%AD%E4%B9%8B%E5%B3%B65-3-68",
-          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location"
+          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "rihga",
+          "placeName": "RIHGA Royal Hotel Osaka"
         },
         {
           "id": "d11-e1",
@@ -1929,7 +2225,12 @@ window.TRIP_DATA = {
           "sourceUrl": "https://moritaya-kyoto.com/kiyamachi/en",
           "cost": "¥5,400平台费已付不可退；餐费另付，邮件菜单¥13,200另10%服务费，以账单为准。",
           "bookingUrl": "https://autoreserve.com/en/restaurants/mSrwQPMiPn5a5haPgzTq",
-          "bookingLabel": "AutoReserve餐厅页"
+          "bookingLabel": "AutoReserve餐厅页",
+          "categories": [
+            "food"
+          ],
+          "placeId": "moritaya",
+          "placeName": "モリタ屋 木屋町店"
         },
         {
           "id": "d11-e2",
@@ -1942,7 +2243,12 @@ window.TRIP_DATA = {
           "lng": 135.77167,
           "query": "三条大橋 京都 鴨川",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E4%B8%89%E6%9D%A1%E5%A4%A7%E6%A9%8B%20%E4%BA%AC%E9%83%BD%20%E9%B4%A8%E5%B7%9D",
-          "sourceUrl": "https://www.jbec.or.jp/photoarchives/26_sanjiyouoohashi/"
+          "sourceUrl": "https://www.jbec.or.jp/photoarchives/26_sanjiyouoohashi/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "sanjo",
+          "placeName": "鸭川·三条大桥"
         },
         {
           "id": "d11-e3",
@@ -1955,7 +2261,12 @@ window.TRIP_DATA = {
           "lng": 135.6823142,
           "query": "阪急 嵐山駅 京都",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E9%98%AA%E6%80%A5%20%E5%B5%90%E5%B1%B1%E9%A7%85%20%E4%BA%AC%E9%83%BD",
-          "sourceUrl": "https://www.hankyu.co.jp/station/arashiyama.html"
+          "sourceUrl": "https://www.hankyu.co.jp/station/arashiyama.html",
+          "categories": [
+            "transport"
+          ],
+          "placeId": "hankyuArashiyama",
+          "placeName": "阪急岚山站"
         },
         {
           "id": "d11-e4",
@@ -1968,7 +2279,12 @@ window.TRIP_DATA = {
           "lng": 135.677773,
           "query": "渡月橋 京都 嵐山",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E6%B8%A1%E6%9C%88%E6%A9%8B%20%E4%BA%AC%E9%83%BD%20%E5%B5%90%E5%B1%B1",
-          "sourceUrl": "https://www.kyoto.travel/en/see-and-do/"
+          "sourceUrl": "https://www.kyoto.travel/en/see-and-do/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "togetsukyo",
+          "placeName": "渡月桥"
         },
         {
           "id": "d11-e5",
@@ -1981,7 +2297,12 @@ window.TRIP_DATA = {
           "lng": 135.6736865,
           "query": "天龍寺 京都市右京区嵯峨天龍寺芒ノ馬場町68",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E5%A4%A9%E9%BE%8D%E5%AF%BA%20%E4%BA%AC%E9%83%BD%E5%B8%82%E5%8F%B3%E4%BA%AC%E5%8C%BA%E5%B5%AF%E5%B3%A8%E5%A4%A9%E9%BE%8D%E5%AF%BA%E8%8A%92%E3%83%8E%E9%A6%AC%E5%A0%B4%E7%94%BA68",
-          "sourceUrl": "https://www.tenryuji.com/visit/"
+          "sourceUrl": "https://www.tenryuji.com/visit/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "tenryuji",
+          "placeName": "天龙寺（京都岚山）"
         },
         {
           "id": "d11-e6",
@@ -1994,7 +2315,12 @@ window.TRIP_DATA = {
           "lng": 135.6803181,
           "query": "トロッコ嵯峨駅 嵯峨野観光鉄道",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E5%B5%AF%E5%B3%A8%E9%A7%85%20%E5%B5%AF%E5%B3%A8%E9%87%8E%E8%A6%B3%E5%85%89%E9%89%84%E9%81%93",
-          "sourceUrl": "https://www.sagano-kanko.co.jp/station/saga/"
+          "sourceUrl": "https://www.sagano-kanko.co.jp/station/saga/",
+          "categories": [
+            "transport"
+          ],
+          "placeId": "torokkoSaga",
+          "placeName": "小火车嵯峨站"
         },
         {
           "id": "d11-e7",
@@ -2011,7 +2337,13 @@ window.TRIP_DATA = {
           "statusLabel": "两单已确认 · 票面待核对",
           "details": "最终保留哪单待决定。偏好1–4号有窗车厢中段同组C+D，两位均面向龟冈，D靠窗C过道。使用手机电子票二维码，PDF凭证不能登车。",
           "bookingUrl": "https://ars-saganokanko.triplabo.jp/home",
-          "bookingLabel": "官方订单／购票"
+          "bookingLabel": "官方订单／购票",
+          "categories": [
+            "spot",
+            "transport"
+          ],
+          "placeId": "torokkoKameoka",
+          "placeName": "小火车龟冈站"
         },
         {
           "id": "d11-e8",
@@ -2024,7 +2356,12 @@ window.TRIP_DATA = {
           "lng": 135.487277,
           "query": "RIHGA Royal Hotel Osaka 大阪市北区中之島5-3-68",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=RIHGA%20Royal%20Hotel%20Osaka%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E4%B8%AD%E4%B9%8B%E5%B3%B65-3-68",
-          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location"
+          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "rihga",
+          "placeName": "RIHGA Royal Hotel Osaka"
         }
       ],
       "transport": [
@@ -2190,7 +2527,13 @@ window.TRIP_DATA = {
           "query": "RIHGA Royal Hotel Osaka 大阪市北区中之島5-3-68",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=RIHGA%20Royal%20Hotel%20Osaka%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E4%B8%AD%E4%B9%8B%E5%B3%B65-3-68",
           "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location",
-          "statusLabel": "去程2席已确认 · 发车时刻待确认"
+          "statusLabel": "去程2席已确认 · 发车时刻待确认",
+          "categories": [
+            "hotel",
+            "transport"
+          ],
+          "placeId": "rihga",
+          "placeName": "RIHGA Royal Hotel Osaka"
         },
         {
           "id": "d12-e1",
@@ -2205,7 +2548,12 @@ window.TRIP_DATA = {
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B5%E3%83%AB%E3%83%BB%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%AA%E3%83%BB%E3%82%B8%E3%83%A3%E3%83%91%E3%83%B3%20%E5%A4%A7%E9%98%AA",
           "sourceUrl": "https://www.usj.co.jp/web/en/us/park-guide/schedule/park-hour",
           "bookingUrl": "https://www.usj.co.jp/web/en/us/tickets",
-          "bookingLabel": "官方门票／营业信息"
+          "bookingLabel": "官方门票／营业信息",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "usj",
+          "placeName": "Universal Studios Japan"
         },
         {
           "id": "d12-e2",
@@ -2218,7 +2566,12 @@ window.TRIP_DATA = {
           "lng": 135.487277,
           "query": "RIHGA Royal Hotel Osaka 大阪市北区中之島5-3-68",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=RIHGA%20Royal%20Hotel%20Osaka%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E4%B8%AD%E4%B9%8B%E5%B3%B65-3-68",
-          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location"
+          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "rihga",
+          "placeName": "RIHGA Royal Hotel Osaka"
         }
       ],
       "transport": [
@@ -2302,7 +2655,12 @@ window.TRIP_DATA = {
           "lng": 135.487277,
           "query": "RIHGA Royal Hotel Osaka 大阪市北区中之島5-3-68",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=RIHGA%20Royal%20Hotel%20Osaka%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E4%B8%AD%E4%B9%8B%E5%B3%B65-3-68",
-          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location"
+          "sourceUrl": "https://www.rihga.com/zh-hans/osaka/location",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "rihga",
+          "placeName": "RIHGA Royal Hotel Osaka"
         },
         {
           "id": "d13-e1",
@@ -2315,7 +2673,12 @@ window.TRIP_DATA = {
           "lng": null,
           "query": "梅田",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E6%A2%85%E7%94%B0",
-          "mapLabel": "查看梅田区域"
+          "mapLabel": "查看梅田区域",
+          "categories": [
+            "food",
+            "spot"
+          ],
+          "placeId": "area:umedaShoppingLunch"
         },
         {
           "id": "d13-e2",
@@ -2328,7 +2691,12 @@ window.TRIP_DATA = {
           "lng": 135.49374,
           "query": "THE OSAKA STATION HOTEL 大阪市北区梅田3-2-2",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=THE%20OSAKA%20STATION%20HOTEL%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E6%A2%85%E7%94%B03-2-2",
-          "sourceUrl": "https://osakastation-hotel.jp/en/access/"
+          "sourceUrl": "https://osakastation-hotel.jp/en/access/",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "station",
+          "placeName": "THE OSAKA STATION HOTEL"
         },
         {
           "id": "d13-e3",
@@ -2341,7 +2709,12 @@ window.TRIP_DATA = {
           "lng": 135.4947946,
           "query": "グランフロント大阪 南館 大阪市北区大深町4-20",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%82%B0%E3%83%A9%E3%83%B3%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E5%A4%A7%E9%98%AA%20%E5%8D%97%E9%A4%A8%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E5%A4%A7%E6%B7%B1%E7%94%BA4-20",
-          "sourceUrl": "https://www.grandfront-osaka.jp/access/"
+          "sourceUrl": "https://www.grandfront-osaka.jp/access/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "grandFront",
+          "placeName": "Grand Front Osaka 南馆"
         },
         {
           "id": "d13-e4",
@@ -2355,7 +2728,12 @@ window.TRIP_DATA = {
           "query": "うめきた公園 グラングリーン大阪",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%81%86%E3%82%81%E3%81%8D%E3%81%9F%E5%85%AC%E5%9C%92%20%E3%82%B0%E3%83%A9%E3%83%B3%E3%82%B0%E3%83%AA%E3%83%BC%E3%83%B3%E5%A4%A7%E9%98%AA",
           "mapLabel": "查看公园区域",
-          "sourceUrl": "https://parksgreenery.city.osaka.lg.jp/article/expo_park16/"
+          "sourceUrl": "https://parksgreenery.city.osaka.lg.jp/article/expo_park16/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "umekitaPark",
+          "placeName": "Grand Green Osaka·梅北公园（南区示意）"
         },
         {
           "id": "d13-e5",
@@ -2368,7 +2746,13 @@ window.TRIP_DATA = {
           "lng": 135.4901486,
           "query": "梅田スカイビル 大阪市北区大淀中1-1-88",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E6%A2%85%E7%94%B0%E3%82%B9%E3%82%AB%E3%82%A4%E3%83%93%E3%83%AB%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E5%A4%A7%E6%B7%80%E4%B8%AD1-1-88",
-          "sourceUrl": "https://www.skybldg.co.jp/access/"
+          "sourceUrl": "https://www.skybldg.co.jp/access/",
+          "categories": [
+            "food",
+            "spot"
+          ],
+          "placeId": "umedaSky",
+          "placeName": "梅田 Sky Building"
         },
         {
           "id": "d13-e6",
@@ -2387,7 +2771,12 @@ window.TRIP_DATA = {
           "cost": "餐券已支付；平台列总额¥40,480（餐券¥35,200＋税费¥3,520＋手续费¥1,760），饮料/额外服务费可能到店另付。",
           "details": "着装Smart casual；禁止T恤、短裤、凉鞋，勿使用浓香水。取消费用按日本时间：12/1起30%，12/5起50%，12/8当天100%。",
           "bookingUrl": "https://omakaseje.com/restaurants/um855297",
-          "bookingLabel": "官方餐厅页"
+          "bookingLabel": "官方餐厅页",
+          "categories": [
+            "food"
+          ],
+          "placeId": "torisen",
+          "placeName": "焼鳥 とり泉"
         }
       ],
       "transport": [
@@ -2518,7 +2907,12 @@ window.TRIP_DATA = {
           "lng": 135.49374,
           "query": "THE OSAKA STATION HOTEL 大阪市北区梅田3-2-2",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=THE%20OSAKA%20STATION%20HOTEL%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E6%A2%85%E7%94%B03-2-2",
-          "sourceUrl": "https://osakastation-hotel.jp/en/access/"
+          "sourceUrl": "https://osakastation-hotel.jp/en/access/",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "station",
+          "placeName": "THE OSAKA STATION HOTEL"
         },
         {
           "id": "d14-e1",
@@ -2531,7 +2925,12 @@ window.TRIP_DATA = {
           "lng": 135.49374,
           "query": "THE OSAKA STATION HOTEL 大阪市北区梅田3-2-2",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=THE%20OSAKA%20STATION%20HOTEL%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E6%A2%85%E7%94%B03-2-2",
-          "sourceUrl": "https://osakastation-hotel.jp/en/access/"
+          "sourceUrl": "https://osakastation-hotel.jp/en/access/",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "station",
+          "placeName": "THE OSAKA STATION HOTEL"
         },
         {
           "id": "d14-e2",
@@ -2544,7 +2943,12 @@ window.TRIP_DATA = {
           "lng": 135.500935,
           "query": "淀屋橋駅 御堂筋線 大阪",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E6%B7%80%E5%B1%8B%E6%A9%8B%E9%A7%85%20%E5%BE%A1%E5%A0%82%E7%AD%8B%E7%B7%9A%20%E5%A4%A7%E9%98%AA",
-          "sourceUrl": "https://subway.osakametro.co.jp/station_guide/M/m17/"
+          "sourceUrl": "https://subway.osakametro.co.jp/station_guide/M/m17/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "yodoyabashi",
+          "placeName": "淀屋桥（御堂筋）"
         },
         {
           "id": "d14-e3",
@@ -2557,7 +2961,12 @@ window.TRIP_DATA = {
           "lng": 135.5003519,
           "query": "なんば駅 御堂筋線 大阪",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%81%AA%E3%82%93%E3%81%B0%E9%A7%85%20%E5%BE%A1%E5%A0%82%E7%AD%8B%E7%B7%9A%20%E5%A4%A7%E9%98%AA",
-          "sourceUrl": "https://subway.osakametro.co.jp/station_guide/M/m20/"
+          "sourceUrl": "https://subway.osakametro.co.jp/station_guide/M/m20/",
+          "categories": [
+            "spot"
+          ],
+          "placeId": "namba",
+          "placeName": "难波（可选延长段）"
         },
         {
           "id": "d14-e4",
@@ -2570,7 +2979,12 @@ window.TRIP_DATA = {
           "lng": 135.5003697,
           "query": "心斎橋駅 御堂筋線 大阪",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E5%BF%83%E6%96%8E%E6%A9%8B%E9%A7%85%20%E5%BE%A1%E5%A0%82%E7%AD%8B%E7%B7%9A%20%E5%A4%A7%E9%98%AA",
-          "sourceUrl": "https://subway.osakametro.co.jp/station_guide/M/m19/"
+          "sourceUrl": "https://subway.osakametro.co.jp/station_guide/M/m19/",
+          "categories": [
+            "food"
+          ],
+          "placeId": "shinsaibashi",
+          "placeName": "心斋桥（御堂筋）"
         }
       ],
       "transport": [
@@ -2686,7 +3100,12 @@ window.TRIP_DATA = {
           "lng": 135.49374,
           "query": "THE OSAKA STATION HOTEL 大阪市北区梅田3-2-2",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=THE%20OSAKA%20STATION%20HOTEL%20%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8C%97%E5%8C%BA%E6%A2%85%E7%94%B03-2-2",
-          "sourceUrl": "https://osakastation-hotel.jp/en/access/"
+          "sourceUrl": "https://osakastation-hotel.jp/en/access/",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "station",
+          "placeName": "THE OSAKA STATION HOTEL"
         },
         {
           "id": "d15-e1",
@@ -2702,7 +3121,12 @@ window.TRIP_DATA = {
           "sourceUrl": "https://www.kansai-airport.or.jp/access/to-airport/train",
           "participants": "Han",
           "mapLabel": "查看机场（航站楼待确认）",
-          "details": "地图点仅代表关西机场区域／机场站，不代表已确认登机航站楼；实际航班及T1/T2待核对。"
+          "details": "地图点仅代表关西机场区域／机场站，不代表已确认登机航站楼；实际航班及T1/T2待核对。",
+          "categories": [
+            "transport"
+          ],
+          "placeId": "kix",
+          "placeName": "关西机场 KIX（机场站区示意）"
         },
         {
           "id": "d15-e2",
@@ -2716,7 +3140,12 @@ window.TRIP_DATA = {
           "query": "voco Osaka Central 大阪市西区京町堀1-7-1",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=voco%20Osaka%20Central%20%E5%A4%A7%E9%98%AA%E5%B8%82%E8%A5%BF%E5%8C%BA%E4%BA%AC%E7%94%BA%E5%A0%801-7-1",
           "sourceUrl": "https://www.ihg.com/voco/hotels/us/en/osaka/osakn/hoteldetail/directions",
-          "participants": "我 · 1位"
+          "participants": "我 · 1位",
+          "categories": [
+            "hotel"
+          ],
+          "placeId": "voco",
+          "placeName": "voco Osaka Central"
         }
       ],
       "transport": [

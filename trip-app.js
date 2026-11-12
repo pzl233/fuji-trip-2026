@@ -136,6 +136,7 @@
   }
   function renderNav() {
     if (sectionNav) sectionNav.innerHTML = sections.map(section => `<button type="button" class="section-button${section.id === state.section ? ' active' : ''}" data-section="${esc(section.id)}" aria-pressed="${section.id === state.section}">${esc(section.label)}</button>`).join('');
+    sectionNav?.querySelector('.section-button.active')?.scrollIntoView({ inline: 'nearest', block: 'nearest' });
     if (!dayTabs) return;
     dayTabs.hidden = state.section === 'summary';
     dayTabs.innerHTML = `<button type="button" class="day-tab${state.day ? '' : ' active'}" data-overview="true" aria-pressed="${!state.day}">该段总览</button>` + days.filter(day => dayInSection(day, state.section)).map(day => `<button type="button" class="day-tab${day.id === state.day ? ' active' : ''}" data-day="${esc(day.id)}" aria-pressed="${day.id === state.day}" aria-label="${esc(day.label || day.id)}行程">${esc(day.label || day.date || day.id)}</button>`).join('');

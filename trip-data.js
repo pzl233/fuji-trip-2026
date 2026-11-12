@@ -17,9 +17,14 @@ window.TRIP_DATA = {
       "range": "12/1–12/3 · 赤坂／六本木／涩谷"
     },
     {
+      "id": "transfer",
+      "label": "转场",
+      "range": "12/4 · 品川→新大阪，新干线转场"
+    },
+    {
       "id": "osaka",
       "label": "大阪",
-      "range": "12/4–12/10 · 含神户与京都一日游"
+      "range": "12/5–12/10 · 含神户与京都一日游"
     }
   ],
   "stays": [
@@ -1712,7 +1717,7 @@ window.TRIP_DATA = {
       "date": "2026-12-04",
       "legacyId": 9,
       "label": "12/4 周五",
-      "section": "osaka",
+      "section": "transfer",
       "title": "品川乘HIKARI 715去大阪",
       "summary": "14:10品川→16:57新大阪已订；2位Green车厢8号车17-A/17-B，傍晚入住理嘉皇家。",
       "notes": [

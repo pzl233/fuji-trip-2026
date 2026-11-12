@@ -19,6 +19,14 @@
   const mapState = { map: null, layers: [], markers: new Map(), ready: false, tileLoaded: false, tileFailed: false, userMarker: null };
   const statusText = { confirmed: '已确认', planned: '计划安排', pending: '待确认', optional: '可选', cancelled: '已取消' };
   const typeText = { hotel: '住宿', spot: '景点', food: '用餐', drink: '休息', transport: '交通' };
+  const markerCategories = {
+    food: { label: '餐饮', drawing: '<path d="M4 3v5a3 3 0 0 0 6 0V3M7 3v18M18 3c-3 3-4 6-4 9h4M18 3v18"/>' },
+    spot: { label: '游玩', drawing: '<path d="M9 4h6l2 3h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h3z"/><circle cx="12" cy="13" r="4"/>' },
+    hotel: { label: '住宿', drawing: '<path d="M3 18v3M21 18v3M3 10V5h18v5M3 14v-4h18v4M2 14h20v4H2zM12 5v5"/>' },
+    transport: { label: '交通', drawing: '<rect x="5" y="2" width="14" height="17" rx="4"/><path d="M5 10h14M12 2v8M8 22l2-3M16 22l-2-3"/><path d="M8 15h1M15 15h1"/>' }
+  };
+  const markerCategory = stop => stop.type === 'food' || stop.type === 'drink' ? 'food' : stop.type === 'hotel' ? 'hotel' : stop.type === 'transport' ? 'transport' : 'spot';
+  const categoryIcon = category => `<svg class="map-place-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${markerCategories[category].drawing}</svg>`;
   const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
   const safeId = value => String(value || '').replace(/[^a-zA-Z0-9_-]/g, '-');
   const paragraph = value => esc(value).replace(/\n/g, '<br>');
@@ -156,6 +164,16 @@
   }
   function clearMap() { mapState.layers.forEach(layer => mapState.map.removeLayer(layer)); mapState.layers = []; mapState.markers.clear(); }
   function mapMessage(text, warning = false) { if (mapStatus) { mapStatus.textContent = text; mapStatus.classList.toggle('is-warning', warning); } }
+  function installMapLegend() {
+    const panel = mapNode?.closest('.map-panel');
+    if (!panel || panel.querySelector('.map-category-legend')) return;
+    const legend = document.createElement('div');
+    legend.className = 'map-category-legend';
+    legend.setAttribute('role', 'group');
+    legend.setAttribute('aria-label', '地图地点类别图例，颜色表示预订状态');
+    legend.innerHTML = `<div class="map-legend-items">${Object.entries(markerCategories).map(([category, info]) => `<span class="map-legend-item" data-marker-category="${category}">${categoryIcon(category)}<span>${info.label}</span></span>`).join('')}</div><p>图标看类别，颜色看状态</p>`;
+    panel.appendChild(legend);
+  }
   function popupHtml(day, stop, number) {
     const url = placeUrl(stop);
     return `<div class="trip-popup"><p class="popup-date">${esc(day.label || day.id)} · ${number ? `${number}号地点` : esc(typeText[stop.type] || '地点')}</p><strong>${esc(stop.name)}</strong><p>${esc(stop.time || '时间待确认')}</p>${statusBadge(stop)}${stop.participants ? `<p>${esc(stop.participants)}</p>` : ''}${stop.description ? `<p>${esc(stop.description)}</p>` : ''}${url ? link(stop.mapLabel || 'Google地图', url, true) : ''}</div>`;
@@ -176,7 +194,8 @@
         const key = `${stop.lat}|${stop.lng}|${stop.name}`;
         if (!state.day && seen.has(key)) continue;
         seen.set(key, true);
-        const marker = window.L.marker([stop.lat, stop.lng], { icon: window.L.divIcon({ className: 'trip-pin-wrap', html: `<span class="trip-pin ${statusOf(stop)}">${optional ? '选' : state.day ? mainNumber : stop.type === 'hotel' ? '宿' : stop.type === 'transport' ? '行' : stop.type === 'food' ? '餐' : '景'}</span>`, iconSize: [32, 32], iconAnchor: [16, 16] }), title: `${day.label || day.id} ${stop.name} ${statusLabel(stop)}` }).addTo(mapState.map).bindPopup(popupHtml(day, stop, state.day && !optional ? mainNumber : null));
+        const category = markerCategory(stop), badge = optional ? '选' : state.day ? mainNumber : null;
+        const marker = window.L.marker([stop.lat, stop.lng], { icon: window.L.divIcon({ className: 'trip-pin-wrap', html: `<span class="trip-pin ${statusOf(stop)} trip-pin-type-${category}" data-marker-category="${category}">${categoryIcon(category)}${badge != null ? `<span class="trip-pin-index" aria-hidden="true">${badge}</span>` : ''}</span>`, iconSize: [36, 36], iconAnchor: [18, 18] }), title: `${day.label || day.id} · ${markerCategories[category].label} · ${stop.name} · ${statusLabel(stop)}${badge != null ? ` · ${optional ? '可选' : `${badge}号地点`}` : ''}` }).addTo(mapState.map).bindPopup(popupHtml(day, stop, state.day && !optional ? mainNumber : null));
         marker.on('click', () => {
           if (state.day !== day.id) { selectDay(day.id, false); focusStop(day.id, stop.id, false); }
           else highlightStop(day, stop);
@@ -252,5 +271,5 @@
   window.addEventListener('hashchange', () => { readHash(); render(); });
   window.addEventListener('popstate', () => { readHash(); render(); });
   window.addEventListener('load', initMap);
-  readHash(); render(); initMap();
+  installMapLegend(); readHash(); render(); initMap();
 })();
